@@ -1,0 +1,62 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="97BC27CD-7F62-DBCC-12E0-FA9824EEE3E7" name="Genre">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 23:45:11 UTC</createdTime>
+<generatorID>9F194387-6501-5F5E-5CF3-08F7A59C1F00</generatorID>
+<ownerDesignName>asdasd</ownerDesignName>
+<engineerTo>
+<item key="37FB5D1D-14E1-EA2E-38EB-394A0BD96415" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="genre id" id="C3CF2066-E840-8AFD-8BB6-F6D5038DB33D">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 23:45:11 UTC</createdTime>
+<generatorID>02780F0F-3D1C-B0A8-601E-A67A7500F8A6</generatorID>
+<ownerDesignName>asdasd</ownerDesignName>
+<engineerTo>
+<item key="37FB5D1D-14E1-EA2E-38EB-394A0BD96415" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="name" id="4A8F6995-FE1C-3329-645F-C15CF24F0184">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 23:45:11 UTC</createdTime>
+<generatorID>648DE7C5-712F-1638-EB21-1D0B310E67BB</generatorID>
+<ownerDesignName>asdasd</ownerDesignName>
+<engineerTo>
+<item key="37FB5D1D-14E1-EA2E-38EB-394A0BD96415" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="A461C8AE-EF9E-4BCE-A7E5-E9025BED93AC" name="Genre PK">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 23:45:11 UTC</createdTime>
+<generatorID>279BDD3A-D5EB-4563-53B0-10FD8794F9F0</generatorID>
+<ownerDesignName>asdasd</ownerDesignName>
+<engineerTo>
+<item key="37FB5D1D-14E1-EA2E-38EB-394A0BD96415" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>C3CF2066-E840-8AFD-8BB6-F6D5038DB33D</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

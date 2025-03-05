@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Rating_User_FK" directorySegmentName="seg_0" id="340ACB01-39BE-132B-BC4F-65EE96EAC687">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 23:45:11 UTC</createdTime>
+<generatorID>A41A06CF-8869-F469-AB1C-1ACC10F02E43</generatorID>
+<ownerDesignName>asdasd</ownerDesignName>
+<engineerTo>
+<item key="37FB5D1D-14E1-EA2E-38EB-394A0BD96415" value="true"/>
+</engineerTo>
+<sourcePk>6671CC11-1932-F011-BE8C-8717676EA68A</sourcePk>
+<identifying>false</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>C9AB915F-8D19-22FD-18D7-C34E4C35E403</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>A2DA36CE-67CF-7BDB-E36E-598FC37E135B</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

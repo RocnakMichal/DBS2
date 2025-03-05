@@ -1,0 +1,90 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="2896AA07-85B1-74F6-B24C-5E83DB5A8FE9" name="Recommendation">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 22:54:36 UTC</createdTime>
+<generatorID>C7844BC5-17E8-5D9B-5C12-DBEBC341DAE4</generatorID>
+<ownerDesignName>asdasd</ownerDesignName>
+<engineerTo>
+<item key="37FB5D1D-14E1-EA2E-38EB-394A0BD96415" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="recommendation id" id="52062B0B-691A-DF7E-90FB-208AD3324618">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 22:54:36 UTC</createdTime>
+<generatorID>D7F6E9A4-14F9-1DBB-1F4F-970560B6C8F5</generatorID>
+<ownerDesignName>asdasd</ownerDesignName>
+<engineerTo>
+<item key="37FB5D1D-14E1-EA2E-38EB-394A0BD96415" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="user id" id="51379EDD-E1BE-BEE6-72F2-F3A89ED50B91">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 22:54:36 UTC</createdTime>
+<generatorID>B85699FE-A10D-399E-2CD2-8833654A7E21</generatorID>
+<ownerDesignName>asdasd</ownerDesignName>
+<engineerTo>
+<item key="37FB5D1D-14E1-EA2E-38EB-394A0BD96415" value="true"/>
+</engineerTo>
+<referedAttribute>83D564D4-4E77-64CB-386B-34488C28E9F4</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="recommended movie id" id="1B68F847-E9D1-F57C-A2CC-33327DA982FB">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 22:54:36 UTC</createdTime>
+<generatorID>5F0953E3-6585-923D-3342-18157E616264</generatorID>
+<ownerDesignName>asdasd</ownerDesignName>
+<engineerTo>
+<item key="37FB5D1D-14E1-EA2E-38EB-394A0BD96415" value="true"/>
+</engineerTo>
+<referedAttribute>B57D526C-F0F1-1A17-DAEA-07141F866547</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="created at" id="E47E7C3E-48E1-64CE-AE9A-70AEB8D8D2C0">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 22:54:36 UTC</createdTime>
+<generatorID>CA055CD1-CA79-93E8-E1E4-2E961838DE12</generatorID>
+<ownerDesignName>asdasd</ownerDesignName>
+<engineerTo>
+<item key="37FB5D1D-14E1-EA2E-38EB-394A0BD96415" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="60091275-E1C8-243A-D085-B065EEA450F8" name="Recommendation_PK">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 22:54:36 UTC</createdTime>
+<generatorID>2DE6C560-44E3-BA9B-2A46-7436DFF7CD1A</generatorID>
+<ownerDesignName>asdasd</ownerDesignName>
+<engineerTo>
+<item key="37FB5D1D-14E1-EA2E-38EB-394A0BD96415" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>52062B0B-691A-DF7E-90FB-208AD3324618</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

@@ -1,0 +1,92 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="C7844BC5-17E8-5D9B-5C12-DBEBC341DAE4" name="Recommendation">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 22:45:33 UTC</createdTime>
+<ownerDesignName>asdasd</ownerDesignName>
+<ordsAlias>table_1</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="recommendation_id" id="D7F6E9A4-14F9-1DBB-1F4F-970560B6C8F5">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 22:45:33 UTC</createdTime>
+<ownerDesignName>asdasd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="user_id" id="F48B282F-D5BD-44ED-C990-5212D7C739AE">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 22:45:33 UTC</createdTime>
+<ownerDesignName>asdasd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="639FDB1D-3E92-63CD-6E09-02A9C5E705AD" referredColumn="A09CA3AD-87E9-3323-96EC-6ADB1AE21D7E"/>
+</associations>
+</Column>
+<Column name="recommended_movie_id" id="D557BDF9-6886-1C32-B45C-68D7899E9566">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 22:45:33 UTC</createdTime>
+<ownerDesignName>asdasd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="F3BC08AF-2017-6F9F-B00D-7A83DFF9211B" referredColumn="9B1B1F72-ACA6-0B06-94F9-E0021164BC59"/>
+</associations>
+</Column>
+<Column name="created_at" id="CA055CD1-CA79-93E8-E1E4-2E961838DE12">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 22:45:33 UTC</createdTime>
+<ownerDesignName>asdasd</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="2DE6C560-44E3-BA9B-2A46-7436DFF7CD1A" name="Recommendation_PK">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 22:45:33 UTC</createdTime>
+<ownerDesignName>asdasd</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D7F6E9A4-14F9-1DBB-1F4F-970560B6C8F5"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A86651E4-8800-3C62-3743-08303CDDB2F5" name="Recommendation_User_FK">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 23:42:35 UTC</createdTime>
+<ownerDesignName>asdasd</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F48B282F-D5BD-44ED-C990-5212D7C739AE"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="7649F136-3D8F-F9DE-D870-C406186BAE0F" name="Recommendation_Movie_FK">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 23:42:41 UTC</createdTime>
+<ownerDesignName>asdasd</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D557BDF9-6886-1C32-B45C-68D7899E9566"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

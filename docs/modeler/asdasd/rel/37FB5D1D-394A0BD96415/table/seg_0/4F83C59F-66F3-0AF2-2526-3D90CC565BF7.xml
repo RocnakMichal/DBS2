@@ -1,0 +1,80 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="4F83C59F-66F3-0AF2-2526-3D90CC565BF7" name="Log">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 23:24:43 UTC</createdTime>
+<ownerDesignName>asdasd</ownerDesignName>
+<ordsAlias>table_1</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="log_id" id="B909E867-19F3-84C2-DA50-A1C228AF0638">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 23:24:43 UTC</createdTime>
+<ownerDesignName>asdasd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="user_id" id="8C119036-DF08-16D1-1713-D869D77D760E">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 23:24:43 UTC</createdTime>
+<ownerDesignName>asdasd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="22ECDB5D-1FBC-A811-61FE-B36F95DBBD26" referredColumn="A09CA3AD-87E9-3323-96EC-6ADB1AE21D7E"/>
+</associations>
+</Column>
+<Column name="action" id="5C890DFC-4B85-CEC0-AC4E-63AF2F77E16B">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 23:24:43 UTC</createdTime>
+<ownerDesignName>asdasd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="timestamp" id="0C70CBD8-9F29-15E3-8392-DC0F3C11D1FB">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 23:24:43 UTC</createdTime>
+<ownerDesignName>asdasd</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="F0FECFB2-BD93-0AAE-8FC2-6786F46497F4" name="Log_PK">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 23:24:43 UTC</createdTime>
+<ownerDesignName>asdasd</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B909E867-19F3-84C2-DA50-A1C228AF0638"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="6ADAA2D5-2FE3-54C8-D1AD-6217F70F46BD" name="Log_User_FK">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 23:42:29 UTC</createdTime>
+<ownerDesignName>asdasd</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8C119036-DF08-16D1-1713-D869D77D760E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

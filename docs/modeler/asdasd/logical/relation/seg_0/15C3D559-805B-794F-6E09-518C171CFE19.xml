@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Rating_Movie_FK" directorySegmentName="seg_0" id="15C3D559-805B-794F-6E09-518C171CFE19">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 23:45:11 UTC</createdTime>
+<generatorID>C87A81B5-CB00-E75A-2BDC-CA0DBBA76267</generatorID>
+<ownerDesignName>asdasd</ownerDesignName>
+<engineerTo>
+<item key="37FB5D1D-14E1-EA2E-38EB-394A0BD96415" value="true"/>
+</engineerTo>
+<sourcePk>689DC107-8E14-2407-F4E7-05FEBD6781E6</sourcePk>
+<identifying>false</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>15F26A32-8CD6-735B-DBB4-7E0A19D61A40</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>A2DA36CE-67CF-7BDB-E36E-598FC37E135B</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

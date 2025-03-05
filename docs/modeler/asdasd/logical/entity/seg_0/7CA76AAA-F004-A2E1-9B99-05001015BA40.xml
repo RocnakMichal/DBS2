@@ -1,0 +1,91 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="7CA76AAA-F004-A2E1-9B99-05001015BA40" name="Group">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 22:54:36 UTC</createdTime>
+<generatorID>66CB5F86-86BC-0AFF-5547-FD4B5BB46AEC</generatorID>
+<ownerDesignName>asdasd</ownerDesignName>
+<engineerTo>
+<item key="37FB5D1D-14E1-EA2E-38EB-394A0BD96415" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="group id" id="2BDD5BFA-DF54-B3E4-5DA0-7ECEDDA42081">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 22:54:36 UTC</createdTime>
+<generatorID>5BF54DFB-3261-F09B-08B1-74B117426B48</generatorID>
+<ownerDesignName>asdasd</ownerDesignName>
+<engineerTo>
+<item key="37FB5D1D-14E1-EA2E-38EB-394A0BD96415" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="owner id" id="083AAABB-BFF9-DCF3-51D3-1DE163701C6A">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 22:54:36 UTC</createdTime>
+<generatorID>51993C18-4008-1002-1964-89FB284D2711</generatorID>
+<ownerDesignName>asdasd</ownerDesignName>
+<engineerTo>
+<item key="37FB5D1D-14E1-EA2E-38EB-394A0BD96415" value="true"/>
+</engineerTo>
+<referedAttribute>83D564D4-4E77-64CB-386B-34488C28E9F4</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="name" id="C42DF09C-C208-4921-BFF1-647BDC1062C2">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 22:54:36 UTC</createdTime>
+<generatorID>2924C01D-9120-98AF-EBDC-0C311F579B2B</generatorID>
+<ownerDesignName>asdasd</ownerDesignName>
+<engineerTo>
+<item key="37FB5D1D-14E1-EA2E-38EB-394A0BD96415" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="created at" id="7EA2BAD6-E42E-A4AF-5E8F-CC4A6BA5D173">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 22:54:36 UTC</createdTime>
+<generatorID>EE32288B-94A9-61CD-1DD5-04165BC1F52B</generatorID>
+<ownerDesignName>asdasd</ownerDesignName>
+<engineerTo>
+<item key="37FB5D1D-14E1-EA2E-38EB-394A0BD96415" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="18C2E839-CDE3-8981-C171-E047F099AEE7" name="Group PK">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 22:54:36 UTC</createdTime>
+<generatorID>4E4A247C-ECB3-37DB-C75E-7FD69DA49039</generatorID>
+<ownerDesignName>asdasd</ownerDesignName>
+<engineerTo>
+<item key="37FB5D1D-14E1-EA2E-38EB-394A0BD96415" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>2BDD5BFA-DF54-B3E4-5DA0-7ECEDDA42081</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

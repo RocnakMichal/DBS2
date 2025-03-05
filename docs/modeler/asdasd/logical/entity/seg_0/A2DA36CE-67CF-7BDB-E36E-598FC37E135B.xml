@@ -1,0 +1,132 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="A2DA36CE-67CF-7BDB-E36E-598FC37E135B" name="Rating">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 22:54:36 UTC</createdTime>
+<generatorID>CF689459-7509-C240-D54D-FB7864E3AFC7</generatorID>
+<ownerDesignName>asdasd</ownerDesignName>
+<engineerTo>
+<item key="37FB5D1D-14E1-EA2E-38EB-394A0BD96415" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="rating id" id="09E986FF-06C5-2150-AE8F-A09D7E225B15">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 22:54:36 UTC</createdTime>
+<generatorID>75DABB83-C00B-5BB1-7C5E-4ACD07029B83</generatorID>
+<ownerDesignName>asdasd</ownerDesignName>
+<engineerTo>
+<item key="37FB5D1D-14E1-EA2E-38EB-394A0BD96415" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="movie id" id="B3A4AA93-2AEA-7204-B7DA-B7E2550D5427">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 22:54:36 UTC</createdTime>
+<generatorID>15C3D559-805B-794F-6E09-518C171CFE19</generatorID>
+<ownerDesignName>asdasd</ownerDesignName>
+<engineerTo>
+<item key="37FB5D1D-14E1-EA2E-38EB-394A0BD96415" value="true"/>
+</engineerTo>
+<referedAttribute>B57D526C-F0F1-1A17-DAEA-07141F866547</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="user id" id="BB72B158-5090-9069-806A-6EFEA32D1CC7">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 22:54:36 UTC</createdTime>
+<generatorID>340ACB01-39BE-132B-BC4F-65EE96EAC687</generatorID>
+<ownerDesignName>asdasd</ownerDesignName>
+<engineerTo>
+<item key="37FB5D1D-14E1-EA2E-38EB-394A0BD96415" value="true"/>
+</engineerTo>
+<referedAttribute>83D564D4-4E77-64CB-386B-34488C28E9F4</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="director" id="6C8A39E8-1010-3A8E-603C-A52C1E9512C8">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 22:54:36 UTC</createdTime>
+<generatorID>7456BFCD-B1DF-7C65-65B3-5C110D551B14</generatorID>
+<ownerDesignName>asdasd</ownerDesignName>
+<engineerTo>
+<item key="37FB5D1D-14E1-EA2E-38EB-394A0BD96415" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="rating" id="8A5662D4-CE3B-52E0-2221-EF9DF249C777">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 22:54:36 UTC</createdTime>
+<generatorID>62F7F97B-8641-A750-1B57-571225FD18BA</generatorID>
+<ownerDesignName>asdasd</ownerDesignName>
+<engineerTo>
+<item key="37FB5D1D-14E1-EA2E-38EB-394A0BD96415" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="comment" id="7C46597B-E7FE-1749-3CC8-69DF16BBEB39">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 22:54:36 UTC</createdTime>
+<generatorID>FE8FC8B9-C66F-A21A-37B3-6604AAB24FF9</generatorID>
+<ownerDesignName>asdasd</ownerDesignName>
+<engineerTo>
+<item key="37FB5D1D-14E1-EA2E-38EB-394A0BD96415" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT028</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="created at" id="602A643D-6A83-96F0-DF54-2C45692052FF">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 22:54:36 UTC</createdTime>
+<generatorID>857D9D4C-C339-D344-C52B-C7769C5D764E</generatorID>
+<ownerDesignName>asdasd</ownerDesignName>
+<engineerTo>
+<item key="37FB5D1D-14E1-EA2E-38EB-394A0BD96415" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="860EA978-B2A0-903F-5EA0-165BC1348D26" name="Rating PK">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 22:54:36 UTC</createdTime>
+<generatorID>8130B2F2-3A48-990A-9095-F8AC08C07A17</generatorID>
+<ownerDesignName>asdasd</ownerDesignName>
+<engineerTo>
+<item key="37FB5D1D-14E1-EA2E-38EB-394A0BD96415" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>09E986FF-06C5-2150-AE8F-A09D7E225B15</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

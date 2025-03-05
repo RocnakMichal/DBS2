@@ -1,0 +1,114 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="11CA1460-077F-CA19-2919-715924C41B24" name="Movie">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 22:35:23 UTC</createdTime>
+<ownerDesignName>asdasd</ownerDesignName>
+<ordsAlias>table_1</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="movie_id" id="9B1B1F72-ACA6-0B06-94F9-E0021164BC59">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 22:35:23 UTC</createdTime>
+<ownerDesignName>asdasd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="title" id="890450EF-AB7C-E257-552B-2CBA2FB2AB18">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 22:35:23 UTC</createdTime>
+<ownerDesignName>asdasd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="genre_id" id="0426C9F0-DAD8-3BF3-CB2A-BBC47021748E">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 22:35:23 UTC</createdTime>
+<ownerDesignName>asdasd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="79FE0213-43E1-C2EA-2162-3C757CA69B7A" referredColumn="02780F0F-3D1C-B0A8-601E-A67A7500F8A6"/>
+</associations>
+</Column>
+<Column name="director" id="6E234E42-E0E0-7F10-9753-8CCBD115EDB7">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 22:35:23 UTC</createdTime>
+<ownerDesignName>asdasd</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="release_year" id="88F8C304-E7B9-50E5-90AC-0C5BE3293261">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 22:35:23 UTC</createdTime>
+<ownerDesignName>asdasd</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="description" id="8B5718F7-6DAB-AF55-3585-3CDB7A65F115">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 22:35:23 UTC</createdTime>
+<ownerDesignName>asdasd</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT028</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="created_at" id="8A807DA8-9A8B-0FAD-6902-48A0E01518B0">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 22:38:07 UTC</createdTime>
+<ownerDesignName>asdasd</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="EBB9CF30-8721-A384-7BBC-DEF933924B65" name="Movie_PK">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 22:35:23 UTC</createdTime>
+<ownerDesignName>asdasd</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9B1B1F72-ACA6-0B06-94F9-E0021164BC59"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="07575CAC-9B8E-439B-14E5-74B889EE63B3" name="Movie_Genre_FK">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 23:41:32 UTC</createdTime>
+<ownerDesignName>asdasd</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0426C9F0-DAD8-3BF3-CB2A-BBC47021748E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

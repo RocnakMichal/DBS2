@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Group_member_Group_FK" directorySegmentName="seg_0" id="D68BE53D-0D29-50BF-2003-7EB902A7DB55">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 23:45:11 UTC</createdTime>
+<generatorID>9B07BE6A-BEE6-B176-100F-42F40E9867D4</generatorID>
+<ownerDesignName>asdasd</ownerDesignName>
+<engineerTo>
+<item key="37FB5D1D-14E1-EA2E-38EB-394A0BD96415" value="true"/>
+</engineerTo>
+<sourcePk>18C2E839-CDE3-8981-C171-E047F099AEE7</sourcePk>
+<identifying>false</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>7CA76AAA-F004-A2E1-9B99-05001015BA40</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>38E66911-8DF5-A50A-D5D1-DE952EDA7BC9</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

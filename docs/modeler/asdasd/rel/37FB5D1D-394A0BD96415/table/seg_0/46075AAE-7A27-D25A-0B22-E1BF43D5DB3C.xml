@@ -1,0 +1,101 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="46075AAE-7A27-D25A-0B22-E1BF43D5DB3C" name="User">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 22:19:22 UTC</createdTime>
+<ownerDesignName>asdasd</ownerDesignName>
+<ordsAlias>table_1</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="user_id" id="A09CA3AD-87E9-3323-96EC-6ADB1AE21D7E">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 22:33:06 UTC</createdTime>
+<ownerDesignName>asdasd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="name" id="F3491600-5A97-C6D5-CD3A-1CDDF605D8D0">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 22:20:10 UTC</createdTime>
+<ownerDesignName>asdasd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="email" id="4008D031-73F5-6AAE-7367-27C26C4428E0">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 22:33:06 UTC</createdTime>
+<ownerDesignName>asdasd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="password_hash" id="5C35F7DC-AD38-50F0-C53C-3FB7C0C06667">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 22:33:47 UTC</createdTime>
+<ownerDesignName>asdasd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="role" id="3CEB4D55-9862-573E-6328-DDA6C116D492">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 22:34:12 UTC</createdTime>
+<ownerDesignName>asdasd</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="created_at" id="C66813DE-048E-6C61-0FC0-EA55E34184DA">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 22:35:00 UTC</createdTime>
+<ownerDesignName>asdasd</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="116480A8-3DE7-4C34-A74D-11FFA4B05047" name="User_PK">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 22:33:06 UTC</createdTime>
+<ownerDesignName>asdasd</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A09CA3AD-87E9-3323-96EC-6ADB1AE21D7E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="C49A4CD7-964C-EFE0-A3DA-02EA0B2AEEB7" name="User__UN">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 23:36:47 UTC</createdTime>
+<ownerDesignName>asdasd</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4008D031-73F5-6AAE-7367-27C26C4428E0"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

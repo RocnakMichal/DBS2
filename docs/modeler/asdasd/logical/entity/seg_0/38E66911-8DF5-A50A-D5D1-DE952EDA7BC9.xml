@@ -1,0 +1,90 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="38E66911-8DF5-A50A-D5D1-DE952EDA7BC9" name="Group member">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 22:54:36 UTC</createdTime>
+<generatorID>00E64664-33A8-5B49-F60F-EF3C5C0E4049</generatorID>
+<ownerDesignName>asdasd</ownerDesignName>
+<engineerTo>
+<item key="37FB5D1D-14E1-EA2E-38EB-394A0BD96415" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id" id="A22D8403-8016-C763-18D1-20B1F0D6F372">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 22:54:36 UTC</createdTime>
+<generatorID>A49D337A-0735-A1CC-2B43-6FC3C7CEE528</generatorID>
+<ownerDesignName>asdasd</ownerDesignName>
+<engineerTo>
+<item key="37FB5D1D-14E1-EA2E-38EB-394A0BD96415" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="user id" id="B5E7264B-8FB3-0710-007D-EC612B6932B1">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 22:54:36 UTC</createdTime>
+<generatorID>23BFBA46-C40B-2F08-4DDC-B454D5DBF2A5</generatorID>
+<ownerDesignName>asdasd</ownerDesignName>
+<engineerTo>
+<item key="37FB5D1D-14E1-EA2E-38EB-394A0BD96415" value="true"/>
+</engineerTo>
+<referedAttribute>83D564D4-4E77-64CB-386B-34488C28E9F4</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="group id" id="6D8993DD-0C3D-793F-1305-E25F3311963A">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 22:54:36 UTC</createdTime>
+<generatorID>D68BE53D-0D29-50BF-2003-7EB902A7DB55</generatorID>
+<ownerDesignName>asdasd</ownerDesignName>
+<engineerTo>
+<item key="37FB5D1D-14E1-EA2E-38EB-394A0BD96415" value="true"/>
+</engineerTo>
+<referedAttribute>2BDD5BFA-DF54-B3E4-5DA0-7ECEDDA42081</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="created at" id="AB7823B2-BFA4-9CB7-4A05-1C7F8E76B77C">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 22:54:36 UTC</createdTime>
+<generatorID>4B2F44A1-2C77-23D3-D4B5-81D0A7B38416</generatorID>
+<ownerDesignName>asdasd</ownerDesignName>
+<engineerTo>
+<item key="37FB5D1D-14E1-EA2E-38EB-394A0BD96415" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="8BE6B384-A973-5644-3EF9-6281251B73CB" name="Group member PK">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 22:54:36 UTC</createdTime>
+<generatorID>44C26809-6837-2075-CDF0-ECF90C57AE74</generatorID>
+<ownerDesignName>asdasd</ownerDesignName>
+<engineerTo>
+<item key="37FB5D1D-14E1-EA2E-38EB-394A0BD96415" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>A22D8403-8016-C763-18D1-20B1F0D6F372</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

@@ -1,0 +1,133 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="15F26A32-8CD6-735B-DBB4-7E0A19D61A40" name="Movie">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 22:54:36 UTC</createdTime>
+<generatorID>11CA1460-077F-CA19-2919-715924C41B24</generatorID>
+<ownerDesignName>asdasd</ownerDesignName>
+<engineerTo>
+<item key="37FB5D1D-14E1-EA2E-38EB-394A0BD96415" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="movie id" id="B57D526C-F0F1-1A17-DAEA-07141F866547">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 22:54:36 UTC</createdTime>
+<generatorID>9B1B1F72-ACA6-0B06-94F9-E0021164BC59</generatorID>
+<ownerDesignName>asdasd</ownerDesignName>
+<engineerTo>
+<item key="37FB5D1D-14E1-EA2E-38EB-394A0BD96415" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="title" id="2391FF0D-E64C-B9B9-FC24-D020CD2CDBE2">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 22:54:36 UTC</createdTime>
+<generatorID>890450EF-AB7C-E257-552B-2CBA2FB2AB18</generatorID>
+<ownerDesignName>asdasd</ownerDesignName>
+<engineerTo>
+<item key="37FB5D1D-14E1-EA2E-38EB-394A0BD96415" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="genre id" id="A4C9E214-9962-1AE7-10D5-8BB53E748DFE">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 22:54:36 UTC</createdTime>
+<generatorID>1282BB88-64D0-56D9-6D5A-3C360741C3FD</generatorID>
+<ownerDesignName>asdasd</ownerDesignName>
+<engineerTo>
+<item key="37FB5D1D-14E1-EA2E-38EB-394A0BD96415" value="true"/>
+</engineerTo>
+<referedAttribute>C3CF2066-E840-8AFD-8BB6-F6D5038DB33D</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="director" id="B95F4E31-DFF8-75FA-3E16-AE3FB00E6758">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 22:54:36 UTC</createdTime>
+<generatorID>6E234E42-E0E0-7F10-9753-8CCBD115EDB7</generatorID>
+<ownerDesignName>asdasd</ownerDesignName>
+<engineerTo>
+<item key="37FB5D1D-14E1-EA2E-38EB-394A0BD96415" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="release year" id="60A58F84-8B52-5067-1D24-8E71AF4B1FBF">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 22:54:36 UTC</createdTime>
+<generatorID>88F8C304-E7B9-50E5-90AC-0C5BE3293261</generatorID>
+<ownerDesignName>asdasd</ownerDesignName>
+<engineerTo>
+<item key="37FB5D1D-14E1-EA2E-38EB-394A0BD96415" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="description" id="91128E7A-F075-1A61-647B-9D1040C62EE0">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 22:54:36 UTC</createdTime>
+<generatorID>8B5718F7-6DAB-AF55-3585-3CDB7A65F115</generatorID>
+<ownerDesignName>asdasd</ownerDesignName>
+<engineerTo>
+<item key="37FB5D1D-14E1-EA2E-38EB-394A0BD96415" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT028</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="created at" id="78986C52-FFD0-4516-7DD0-33D14FA5AA11">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 22:54:36 UTC</createdTime>
+<generatorID>8A807DA8-9A8B-0FAD-6902-48A0E01518B0</generatorID>
+<ownerDesignName>asdasd</ownerDesignName>
+<engineerTo>
+<item key="37FB5D1D-14E1-EA2E-38EB-394A0BD96415" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="689DC107-8E14-2407-F4E7-05FEBD6781E6" name="Movie PK">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 22:54:36 UTC</createdTime>
+<generatorID>EBB9CF30-8721-A384-7BBC-DEF933924B65</generatorID>
+<ownerDesignName>asdasd</ownerDesignName>
+<engineerTo>
+<item key="37FB5D1D-14E1-EA2E-38EB-394A0BD96415" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>B57D526C-F0F1-1A17-DAEA-07141F866547</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

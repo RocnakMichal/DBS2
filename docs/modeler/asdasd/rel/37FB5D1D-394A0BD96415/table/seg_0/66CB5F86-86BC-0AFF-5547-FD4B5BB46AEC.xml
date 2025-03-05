@@ -1,0 +1,81 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="66CB5F86-86BC-0AFF-5547-FD4B5BB46AEC" name="Group">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 22:40:43 UTC</createdTime>
+<ownerDesignName>asdasd</ownerDesignName>
+<ordsAlias>table_1</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="group_id" id="5BF54DFB-3261-F09B-08B1-74B117426B48">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 22:40:43 UTC</createdTime>
+<ownerDesignName>asdasd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="owner_id" id="67BE51B4-7A2A-BE41-01CC-C8BF21F25983">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 22:40:43 UTC</createdTime>
+<ownerDesignName>asdasd</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="4EC1CCE6-7957-7AA9-CD0A-64C107C1AE71" referredColumn="A09CA3AD-87E9-3323-96EC-6ADB1AE21D7E"/>
+</associations>
+</Column>
+<Column name="name" id="2924C01D-9120-98AF-EBDC-0C311F579B2B">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 22:40:43 UTC</createdTime>
+<ownerDesignName>asdasd</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="created_at" id="EE32288B-94A9-61CD-1DD5-04165BC1F52B">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 22:40:43 UTC</createdTime>
+<ownerDesignName>asdasd</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="4E4A247C-ECB3-37DB-C75E-7FD69DA49039" name="Group_PK">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 22:40:43 UTC</createdTime>
+<ownerDesignName>asdasd</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5BF54DFB-3261-F09B-08B1-74B117426B48"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="29EB8E40-F94C-F35C-9450-BDA3B0AED20A" name="Group_User_FK">
+<createdBy>domin</createdBy>
+<createdTime>2025-03-04 23:39:14 UTC</createdTime>
+<ownerDesignName>asdasd</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="67BE51B4-7A2A-BE41-01CC-C8BF21F25983"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
