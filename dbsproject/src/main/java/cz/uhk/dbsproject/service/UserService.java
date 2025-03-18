@@ -9,10 +9,8 @@ import java.util.List;
 
 @Service
 public class UserService {
-
     private final UserRepository userRepository;
 
-    // Constructor-based injection is recommended
     @Autowired
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
@@ -34,7 +32,6 @@ public class UserService {
         return userRepository.findByEmail(name);
     }
 
-
     public MovieUser getUserByEmail(String email) {
         return userRepository.findByEmail(email);
     }
@@ -48,7 +45,6 @@ public class UserService {
         existingMovieUser.setEmail(updatedMovieUser.getEmail());
         existingMovieUser.setPasswordHash(updatedMovieUser.getPasswordHash());
         existingMovieUser.setRole(updatedMovieUser.getRole());
-        // set other fields as needed
         return userRepository.save(existingMovieUser);
     }
 

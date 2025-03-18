@@ -3,14 +3,15 @@ package cz.uhk.dbsproject.controller;
 import cz.uhk.dbsproject.entity.MovieUser;
 import cz.uhk.dbsproject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/api/users")
+@Controller
+@RequestMapping("/users")
 public class UserController {
-
     private final UserService userService;
 
     @Autowired
@@ -19,8 +20,10 @@ public class UserController {
     }
 
     @GetMapping
-    public List<MovieUser> getAllUsers() {
-        return userService.getAllUsers();
+    public String getAllUsers(Model model) {
+        List<MovieUser> users = userService.getAllUsers();
+        model.addAttribute("users", users);
+        return "users";
     }
 
     @GetMapping("/{id}")
@@ -28,9 +31,15 @@ public class UserController {
         return userService.getUser(id);
     }
 
-    @PostMapping
-    public MovieUser createUser(@RequestBody MovieUser movieUser) {
-        return userService.createUser(movieUser);
+    @PostMapping("/add")
+    public String createUser(@RequestParam String name, @RequestParam String email) {
+        MovieUser newUser = new MovieUser();
+        newUser.setName(name);
+        newUser.setEmail(email);
+        newUser.setPasswordHash("test123"); // Default password for testing, will be changed later
+        newUser.setRole("USER");
+        userService.createUser(newUser);
+        return "redirect:/users";
     }
 
     @PutMapping("/{id}")
@@ -38,13 +47,9 @@ public class UserController {
         return userService.updateUser(id, updatedMovieUser);
     }
 
-    @DeleteMapping("/{id}")
+    @PostMapping("/delete/{id}")
     public String deleteUser(@PathVariable int id) {
-        boolean deleted = userService.deleteUser(id);
-        if (deleted) {
-            return "User with ID " + id + " deleted.";
-        } else {
-            return "User with ID " + id + " not found.";
-        }
+        userService.deleteUser(id);
+        return "redirect:/users";
     }
 }
