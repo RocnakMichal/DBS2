@@ -12,7 +12,7 @@ public class Log {
     private int id;
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private MovieUser movieUser;
     private String action;
     private LocalDateTime timestamp;
 
@@ -23,12 +23,12 @@ public class Log {
         return id;
     }
 
-    public User getUser() {
-        return user;
+    public MovieUser getUser() {
+        return movieUser;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setMovieUser(MovieUser movieUser) {
+        this.movieUser = movieUser;
     }
 
     public String getAction() {

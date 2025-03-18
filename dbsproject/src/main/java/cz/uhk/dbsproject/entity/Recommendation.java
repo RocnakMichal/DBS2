@@ -12,7 +12,7 @@ public class Recommendation {
     private int id;
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private MovieUser movieUser;
     @ManyToOne
     @JoinColumn(name = "recommended_movie_id")
     private Movie recommendedMovie;
@@ -26,12 +26,12 @@ public class Recommendation {
         return id;
     }
 
-    public User getUser() {
-        return user;
+    public MovieUser getUser() {
+        return movieUser;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(MovieUser movieUser) {
+        this.movieUser = movieUser;
     }
 
     public Movie getRecommendedMovie() {

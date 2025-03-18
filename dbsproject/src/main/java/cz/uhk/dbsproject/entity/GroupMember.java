@@ -15,7 +15,7 @@ public class GroupMember {
     private UserGroup group;
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private MovieUser movieUser;
     private LocalDateTime joinedAt;
 
     public GroupMember() {
@@ -33,12 +33,12 @@ public class GroupMember {
         this.group = group;
     }
 
-    public User getUser() {
-        return user;
+    public MovieUser getUser() {
+        return movieUser;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(MovieUser movieUser) {
+        this.movieUser = movieUser;
     }
 
     public LocalDateTime getJoinedAt() {

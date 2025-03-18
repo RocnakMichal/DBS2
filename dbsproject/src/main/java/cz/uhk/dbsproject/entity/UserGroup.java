@@ -7,7 +7,7 @@ import java.util.List;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "group")
+@Table(name = "user_group")
 public class UserGroup {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,7 +17,7 @@ public class UserGroup {
     private LocalDateTime createdAt;
     @ManyToOne
     @JoinColumn(name = "owner_id")
-    private User owner;
+    private MovieUser owner;
     @OneToMany(mappedBy = "group", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<GroupMember> groupMembers = new ArrayList<>();
     @OneToMany(mappedBy = "group", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -46,11 +46,11 @@ public class UserGroup {
         this.createdAt = createdAt;
     }
 
-    public User getOwner() {
+    public MovieUser getOwner() {
         return owner;
     }
 
-    public void setOwner(User owner) {
+    public void setOwner(MovieUser owner) {
         this.owner = owner;
     }
 

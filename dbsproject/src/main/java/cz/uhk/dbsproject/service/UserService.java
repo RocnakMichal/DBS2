@@ -1,6 +1,6 @@
 package cz.uhk.dbsproject.service;
 
-import cz.uhk.dbsproject.entity.User;
+import cz.uhk.dbsproject.entity.MovieUser;
 import cz.uhk.dbsproject.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,38 +18,38 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public User createUser(User user) {
-        return userRepository.save(user);
+    public MovieUser createUser(MovieUser movieUser) {
+        return userRepository.save(movieUser);
     }
 
-    public User getUser(int id) {
+    public MovieUser getUser(int id) {
         return userRepository.findById(id).orElse(null);
     }
 
-    public List<User> getAllUsers() {
+    public List<MovieUser> getAllUsers() {
         return userRepository.findAll();
     }
 
-    public User getUserByName(String name) {
+    public MovieUser getUserByName(String name) {
         return userRepository.findByEmail(name);
     }
 
 
-    public User getUserByEmail(String email) {
+    public MovieUser getUserByEmail(String email) {
         return userRepository.findByEmail(email);
     }
 
-    public User updateUser(int id, User updatedUser) {
-        User existingUser = userRepository.findById(id).orElse(null);
-        if (existingUser == null) {
+    public MovieUser updateUser(int id, MovieUser updatedMovieUser) {
+        MovieUser existingMovieUser = userRepository.findById(id).orElse(null);
+        if (existingMovieUser == null) {
             return null;
         }
-        existingUser.setName(updatedUser.getName());
-        existingUser.setEmail(updatedUser.getEmail());
-        existingUser.setPasswordHash(updatedUser.getPasswordHash());
-        existingUser.setRole(updatedUser.getRole());
+        existingMovieUser.setName(updatedMovieUser.getName());
+        existingMovieUser.setEmail(updatedMovieUser.getEmail());
+        existingMovieUser.setPasswordHash(updatedMovieUser.getPasswordHash());
+        existingMovieUser.setRole(updatedMovieUser.getRole());
         // set other fields as needed
-        return userRepository.save(existingUser);
+        return userRepository.save(existingMovieUser);
     }
 
     public boolean deleteUser(int id) {

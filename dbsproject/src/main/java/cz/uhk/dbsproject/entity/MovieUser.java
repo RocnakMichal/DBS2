@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "user")
-public class User {
+@Table(name = "movie_user")
+public class MovieUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -19,17 +19,17 @@ public class User {
     private String role;
     private LocalDateTime createdAt;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "movieUser", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Log> logs = new ArrayList<>();
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "movieUser", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Rating> ratings = new ArrayList<>();
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "movieUser", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Recommendation> recommendations = new ArrayList<>();
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<UserGroup> ownedGroups = new ArrayList<>();
 
     // Constructors
-    public User() {
+    public MovieUser() {
     }
 
     public int getId() {

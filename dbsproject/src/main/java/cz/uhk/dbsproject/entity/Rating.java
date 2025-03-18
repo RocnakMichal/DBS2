@@ -14,7 +14,7 @@ public class Rating {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private MovieUser movieUser;
 
     @ManyToOne
     @JoinColumn(name = "movie_id")
@@ -32,12 +32,12 @@ public class Rating {
         return id;
     }
 
-    public User getUser() {
-        return user;
+    public MovieUser getUser() {
+        return movieUser;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(MovieUser movieUser) {
+        this.movieUser = movieUser;
     }
 
     public Movie getMovie() {

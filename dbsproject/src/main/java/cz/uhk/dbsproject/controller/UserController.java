@@ -1,6 +1,6 @@
 package cz.uhk.dbsproject.controller;
 
-import cz.uhk.dbsproject.entity.User;
+import cz.uhk.dbsproject.entity.MovieUser;
 import cz.uhk.dbsproject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -19,23 +19,23 @@ public class UserController {
     }
 
     @GetMapping
-    public List<User> getAllUsers() {
+    public List<MovieUser> getAllUsers() {
         return userService.getAllUsers();
     }
 
     @GetMapping("/{id}")
-    public User getUser(@PathVariable int id) {
+    public MovieUser getUser(@PathVariable int id) {
         return userService.getUser(id);
     }
 
     @PostMapping
-    public User createUser(@RequestBody User user) {
-        return userService.createUser(user);
+    public MovieUser createUser(@RequestBody MovieUser movieUser) {
+        return userService.createUser(movieUser);
     }
 
     @PutMapping("/{id}")
-    public User updateUser(@PathVariable int id, @RequestBody User updatedUser) {
-        return userService.updateUser(id, updatedUser);
+    public MovieUser updateUser(@PathVariable int id, @RequestBody MovieUser updatedMovieUser) {
+        return userService.updateUser(id, updatedMovieUser);
     }
 
     @DeleteMapping("/{id}")
