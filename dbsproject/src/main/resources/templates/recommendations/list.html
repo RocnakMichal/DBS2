@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>My Recommendations</title>
+</head>
+<body>
+
+<h2>My Recommended Movies</h2>
+
+<ul>
+    <li th:each="r : ${recommendations}">
+        <strong th:text="${r.recommendedMovie.title}">Movie</strong> –
+        <em th:text="${#temporals.format(r.createdAt, 'yyyy-MM-dd HH:mm')}">Date</em>
+    </li>
+</ul>
+
+<a href="/">Back to Home</a>
+
+</body>
+</html>

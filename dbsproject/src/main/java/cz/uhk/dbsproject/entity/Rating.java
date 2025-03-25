@@ -33,11 +33,11 @@ public class Rating {
         return id;
     }
 
-    public MovieUser getUser() {
+    public MovieUser getMovieUser() {
         return movieUser;
     }
 
-    public void setUser(MovieUser movieUser) {
+    public void setMovieUser(MovieUser movieUser) {
         this.movieUser = movieUser;
     }
 

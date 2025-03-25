@@ -1,21 +1,22 @@
 package cz.uhk.dbsproject.controller;
 
-import cz.uhk.dbsproject.entity.Genre;
-import cz.uhk.dbsproject.entity.Movie;
-import cz.uhk.dbsproject.entity.MovieUser;
-import cz.uhk.dbsproject.entity.Rating;
+import cz.uhk.dbsproject.entity.*;
 import cz.uhk.dbsproject.service.GenreService;
 import cz.uhk.dbsproject.service.MovieService;
+import cz.uhk.dbsproject.service.RecommendationService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/movies")
 public class MovieController {
-
+    @Autowired
+    private RecommendationService recommendationService;
     private final MovieService movieService;
     private final GenreService genreService;
 
@@ -128,12 +129,24 @@ public class MovieController {
         return "redirect:/movies/detail/" + id;
     }
 
-    // Placeholder for recommended
-    @GetMapping("/recommended")
-    public String recommendedMovies(HttpSession session, Model model) {
-        if (session.getAttribute("user") == null) return "redirect:/login";
+    @GetMapping("/recommendations")
+    public String viewRecommendations(HttpSession session, Model model) {
+        MovieUser user = (MovieUser) session.getAttribute("user");
+        if (user == null) return "redirect:/login";
 
-        model.addAttribute("movies", movieService.getAllMovies()); // Replace with real logic
-        return "recommended";
+        List<Recommendation> recommendations = recommendationService.getByUser(user);
+        model.addAttribute("recommendations", recommendations);
+        return "recommendations/list";
+    }
+
+    @PostMapping("/{id}/delete-rating")
+    public String deleteRating(@PathVariable int id, HttpSession session) {
+        MovieUser user = (MovieUser) session.getAttribute("user");
+        if (user == null) return "redirect:/login";
+
+        Movie movie = movieService.getMovieById(id);
+        movieService.deleteRating(movie, user);
+
+        return "redirect:/movies/detail/" + id;
     }
 }

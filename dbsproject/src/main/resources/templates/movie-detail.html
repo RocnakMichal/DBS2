@@ -6,7 +6,7 @@
 </head>
 <body>
 <h2 th:text="${movie.title}">Movie Title</h2>
-<p><strong>Genre:</strong> <span th:text="${movie.genre}"></span></p>
+<p><strong>Genre:</strong> <span th:text="${movie.genre.name}"></span></p>
 <p><strong>Director:</strong> <span th:text="${movie.director}"></span></p>
 <p><strong>Year:</strong> <span th:text="${movie.releaseYear}"></span></p>
 <p><strong>Description:</strong> <span th:text="${movie.description}"></span></p>
@@ -29,11 +29,30 @@
     <li th:each="rating : ${movie.ratings}">
         <span th:text="${rating.value}"></span>/5
         - <span th:text="${rating.comment}"></span>
-        by <span th:text="${rating.user.name}"></span>
+        by <span th:text="${rating.movieUser.name}"></span>
     </li>
 </ul>
 
-<a th:href="@{/movies/rate/{id}(id=${movie.id})}"><button>Rate This Movie</button></a>
+<div th:if="${userRating != null}">
+    <form th:action="@{/movies/{id}/delete-rating(id=${movie.id})}" method="post">
+        <p>Your rating: <b th:text="${userRating.value}"></b></p>
+        <p>Comment: <span th:text="${userRating.comment}"></span></p>
+        <button type="submit">Delete Rating</button>
+    </form>
+</div>
+
+<div th:unless="${userRating != null}">
+    <a th:href="@{/movies/rate/{id}(id=${movie.id})}">Rate this movie</a>
+
+    <form th:action="@{/movies/{id}/delete-rating(id=${movie.id})}" method="post">
+        <button type="submit">Delete My Rating</button>
+    </form>
+</div>
+
+<form th:action="@{/movies/{id}/recommend(id=${movie.id})}" method="post">
+    <button type="submit">Recommend this movie</button>
+</form>
+
 <a href="/movies"><button>Back</button></a>
 </body>
 </html>
