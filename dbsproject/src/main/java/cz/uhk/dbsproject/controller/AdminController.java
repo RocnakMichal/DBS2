@@ -1,6 +1,9 @@
 package cz.uhk.dbsproject.controller;
 
 import cz.uhk.dbsproject.entity.MovieUser;
+import cz.uhk.dbsproject.repository.BestRatedMovieViewRepository;
+import cz.uhk.dbsproject.repository.MostRecommendedMovieViewRepository;
+import cz.uhk.dbsproject.repository.UserActivitySummaryViewRepository;
 import cz.uhk.dbsproject.service.LogService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +16,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/admin")
 public class AdminController {
 
+    @Autowired
+    private BestRatedMovieViewRepository movieRatingViewRepository;
+    @Autowired
+    private MostRecommendedMovieViewRepository recoMovieViewRepository;
+    @Autowired
+    private UserActivitySummaryViewRepository activityViewRepository;
     private final LogService logService;
 
     @Autowired
@@ -37,5 +46,13 @@ public class AdminController {
     private boolean isAdmin(HttpSession session) {
         MovieUser user = (MovieUser) session.getAttribute("user");
         return user != null && "ADMIN".equalsIgnoreCase(user.getRole());
+    }
+
+    @GetMapping("/views")
+    public String showViews(Model model) {
+        model.addAttribute("bestRated", movieRatingViewRepository.findAll());
+        model.addAttribute("mostRecommended", recoMovieViewRepository.findAll());
+        model.addAttribute("userActivity", activityViewRepository.findAll());
+        return "admin/views";
     }
 }

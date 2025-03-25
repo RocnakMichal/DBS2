@@ -49,9 +49,16 @@
     </form>
 </div>
 
-<form th:action="@{/movies/{id}/recommend(id=${movie.id})}" method="post">
-    <button type="submit">Recommend this movie</button>
+<form th:action="@{/movies/recommend/{id}(id=${movie.id})}" method="post">
+    <button type="submit"
+            th:text="${userRecommended} ? 'Remove Recommendation' : 'Recommend this Movie'"></button>
 </form>
+
+<div th:if="${user.role == 'ADMIN'}">
+    <form th:action="@{/movies/delete/{id}(id=${movie.id})}" method="get">
+        <button type="submit" style="color: red;">Delete Movie</button>
+    </form>
+</div>
 
 <a href="/movies"><button>Back</button></a>
 </body>

@@ -22,8 +22,17 @@
         <td th:text="${movie.genre.name}">Genre</td>
         <td th:text="${movie.releaseYear}">Year</td>
         <td>
-            <a th:href="@{/movies/detail/{id}(id=${movie.id})}"><button>Details</button></a>
-            <a th:href="@{/movies/delete/{id}(id=${movie.id})}"><button class="delete-button">Delete</button></a>
+            <a th:href="@{/movies/detail/{id}(id=${movie.id})}">
+                <button>Details</button>
+            </a>
+
+            <span th:if="${user != null and user.role == 'ADMIN'}">
+                <a th:href="@{/movies/delete/{id}(id=${movie.id})}">
+                    <button class="delete-button" onclick="return confirm('Are you sure you want to delete this movie?');">
+                        Delete
+                    </button>
+                </a>
+            </span>
         </td>
     </tr>
 </table>

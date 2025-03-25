@@ -1,0 +1,8 @@
+CREATE OR REPLACE VIEW most_recommended_movies AS
+SELECT
+    m.id AS movie_id,
+    m.title,
+    s.total_recommendations
+FROM movie m
+JOIN statistics s ON m.id = s.movie_id
+ORDER BY s.total_recommendations DESC;

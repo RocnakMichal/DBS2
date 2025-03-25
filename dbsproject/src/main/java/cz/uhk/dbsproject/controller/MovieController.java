@@ -100,7 +100,10 @@ public class MovieController {
     // Delete movie
     @GetMapping("/delete/{id}")
     public String deleteMovie(@PathVariable int id, HttpSession session) {
-        if (session.getAttribute("user") == null) return "redirect:/login";
+        MovieUser user = (MovieUser) session.getAttribute("user");
+        if (user == null || !"ADMIN".equals(user.getRole())) {
+            return "redirect:/movies";
+        }
 
         movieService.deleteMovie(id);
         return "redirect:/movies";
@@ -146,6 +149,17 @@ public class MovieController {
 
         Movie movie = movieService.getMovieById(id);
         movieService.deleteRating(movie, user);
+
+        return "redirect:/movies/detail/" + id;
+    }
+
+    @PostMapping("/recommend/{id}")
+    public String toggleRecommendation(@PathVariable int id, HttpSession session) {
+        MovieUser user = (MovieUser) session.getAttribute("user");
+        if (user == null) return "redirect:/login";
+
+        Movie movie = movieService.getMovieById(id);
+        recommendationService.toggleRecommendation(movie, user);
 
         return "redirect:/movies/detail/" + id;
     }

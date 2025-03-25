@@ -1,0 +1,9 @@
+CREATE OR REPLACE VIEW best_rated_movies AS
+SELECT
+    m.id AS movie_id,
+    m.title,
+    s.avg_rating,
+    s.total_ratings
+FROM movie m
+JOIN statistics s ON m.id = s.movie_id
+ORDER BY s.avg_rating DESC;
