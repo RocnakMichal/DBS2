@@ -11,6 +11,19 @@
 <p><strong>Year:</strong> <span th:text="${movie.releaseYear}"></span></p>
 <p><strong>Description:</strong> <span th:text="${movie.description}"></span></p>
 
+<h3>Statistics</h3>
+<div th:if="${movie.statistics != null}">
+    <ul>
+        <li th:text="'Average Rating: ' + ${movie.statistics.avgRating}"></li>
+        <li th:text="'Total Ratings: ' + ${movie.statistics.totalRatings}"></li>
+        <li th:text="'Recommendations: ' + ${movie.statistics.totalRecommendations}"></li>
+    </ul>
+</div>
+
+<div th:if="${movie.statistics == null}">
+    <p>No statistics available for this movie yet.</p>
+</div>
+
 <h3>Ratings</h3>
 <ul>
     <li th:each="rating : ${movie.ratings}">
