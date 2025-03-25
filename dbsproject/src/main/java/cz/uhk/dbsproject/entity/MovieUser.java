@@ -19,7 +19,7 @@ public class MovieUser {
     private String role;
     private LocalDateTime createdAt;
 
-    @OneToMany(mappedBy = "movieUser", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Log> logs = new ArrayList<>();
     @OneToMany(mappedBy = "movieUser", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Rating> ratings = new ArrayList<>();

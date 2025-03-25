@@ -12,7 +12,18 @@
     <a href="/register"><button>Register</button></a>
 </p>
 
-<a href="/movies"><button>View All Movies</button></a>
+
+<div th:if="${session.user != null}">
+    <p>Hello, <span th:text="${session.user.name}">User</span></p>
+</div>
+
+<div th:if="${session.user != null and session.user.role == 'ADMIN'}">
+    <a href="/admin/dashboard">Admin Panel</a>
+</div>
+
+<a href="/movies">Browse Movies</a>
+
+<a href="/groups">Browse Groups</a>
 
 <p th:if="${user != null}">
     Logged in as <strong th:text="${user.name}"></strong> (<span th:text="${user.role}"></span>)<br>

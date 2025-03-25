@@ -11,7 +11,7 @@ public class Statistics {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @OneToOne
-    @JoinColumn(name = "movie_id")
+    @JoinColumn(name = "movie_id", unique = true)
     private Movie movie;
     private int totalRatings;
     private double avgRating;

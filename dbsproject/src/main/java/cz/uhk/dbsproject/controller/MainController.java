@@ -13,9 +13,4 @@ public class MainController {
         model.addAttribute("user", session.getAttribute("user"));
         return "index";
     }
-
-    @GetMapping({"/home", "/dashboard"})
-    public String redirectToIndex() {
-        return "redirect:/";
-    }
 }

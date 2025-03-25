@@ -3,8 +3,10 @@ package cz.uhk.dbsproject.service;
 import cz.uhk.dbsproject.entity.Movie;
 import cz.uhk.dbsproject.entity.MovieUser;
 import cz.uhk.dbsproject.entity.Rating;
+import cz.uhk.dbsproject.entity.Statistics;
 import cz.uhk.dbsproject.repository.MovieRepository;
 import cz.uhk.dbsproject.repository.RatingRepository;
+import cz.uhk.dbsproject.repository.StatisticsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,13 +17,19 @@ import java.util.List;
 @Service
 public class MovieService {
 
+    @Autowired
+    private StatisticsService statisticsService;
+    @Autowired
+    private LogService logService;
     private final MovieRepository movieRepository;
     private final RatingRepository ratingRepository;
+    private final StatisticsRepository statisticsRepository;
 
     @Autowired
-    public MovieService(MovieRepository movieRepository, RatingRepository ratingRepository) {
+    public MovieService(MovieRepository movieRepository, RatingRepository ratingRepository, StatisticsRepository statisticsRepository) {
         this.movieRepository = movieRepository;
         this.ratingRepository = ratingRepository;
+        this.statisticsRepository = statisticsRepository;
     }
 
     public List<Movie> getAllMovies() {
@@ -29,14 +37,28 @@ public class MovieService {
     }
 
     public Movie getMovie(int id) {
-        return movieRepository.findById(id).orElse(null);
+        Movie movie = movieRepository.findById(id).orElse(null);
+        if (movie != null && movie.getStatistics() == null) {
+            statisticsService.updateStatistics(movie, ratingRepository.findByMovie(movie), 0);
+        }
+
+        return movie;
     }
 
-    public Movie saveMovie(Movie movie) {
-        if (movie.getCreatedAt() == null) {
-            movie.setCreatedAt(LocalDateTime.now());
-        }
-        return movieRepository.save(movie);
+    public void saveMovie(Movie movie, MovieUser user) {
+        movie.setCreatedAt(LocalDateTime.now());
+        Movie savedMovie = movieRepository.save(movie);
+
+        Statistics stats = new Statistics();
+        stats.setMovie(savedMovie);
+        stats.setCreatedAt(LocalDateTime.now());
+        stats.setAvgRating(0);
+        stats.setTotalRatings(0);
+        stats.setTotalRecommendations(0);
+
+        statisticsRepository.save(stats);
+
+        logService.log(user, "Added movie: " + movie.getTitle());
     }
 
     public void deleteMovie(int id) {
@@ -44,11 +66,21 @@ public class MovieService {
     }
 
     public void addRating(int movieId, MovieUser user, Rating rating) {
-        Movie movie = movieRepository.findById(movieId).orElseThrow();
+        Movie movie = movieRepository.findById(movieId).orElse(null);
+        if (movie == null) return;
+
         rating.setMovie(movie);
         rating.setUser(user);
         rating.setCreatedAt(LocalDateTime.now());
+
         ratingRepository.save(rating);
+
+        List<Rating> ratings = ratingRepository.findByMovie(movie);
+        int totalRecommendations = 0;
+
+        statisticsService.updateStatistics(movie, ratings, totalRecommendations);
+
+        logService.log(user, "Rated movie '" + movie.getTitle() + "' with " + rating.getValue());
     }
 
     public List<Movie> getMoviesSortedByTitle() {
@@ -57,4 +89,7 @@ public class MovieService {
         return movies;
     }
 
+    public Movie getMovieById(int id) {
+        return movieRepository.findById(id).orElse(null);
+    }
 }

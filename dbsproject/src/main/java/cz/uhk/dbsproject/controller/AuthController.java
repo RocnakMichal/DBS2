@@ -2,6 +2,7 @@ package cz.uhk.dbsproject.controller;
 
 import cz.uhk.dbsproject.entity.MovieUser;
 import cz.uhk.dbsproject.repository.UserRepository;
+import cz.uhk.dbsproject.service.LogService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,9 @@ public class AuthController {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private LogService logService;
+
     @GetMapping("/login")
     public String loginForm() {
         return "login";
@@ -24,6 +28,7 @@ public class AuthController {
         MovieUser user = userRepository.findByEmail(email);
         if (user != null && user.getPasswordHash().equals(password)) {
             session.setAttribute("user", user);
+            logService.log(user, "User logged in");
             return "redirect:/users";
         } else {
             model.addAttribute("error", "Invalid email or password");
@@ -44,6 +49,7 @@ public class AuthController {
         user.setPasswordHash(password);
         user.setRole("USER");
         userRepository.save(user);
+        logService.log(user, "User Registered");
         return "redirect:/login";
     }
 

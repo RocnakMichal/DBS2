@@ -13,8 +13,9 @@ public class UserGroup {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-
     private LocalDateTime createdAt;
+    private boolean isPrivate;
+    private String joinPassword;
     @ManyToOne
     @JoinColumn(name = "owner_id")
     private MovieUser owner;
@@ -44,6 +45,22 @@ public class UserGroup {
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public boolean isPrivate() {
+        return isPrivate;
+    }
+
+    public void setPrivate(boolean aPrivate) {
+        isPrivate = aPrivate;
+    }
+
+    public String getJoinPassword() {
+        return joinPassword;
+    }
+
+    public void setJoinPassword(String joinPassword) {
+        this.joinPassword = joinPassword;
     }
 
     public MovieUser getOwner() {
