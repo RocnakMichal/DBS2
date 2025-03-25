@@ -89,4 +89,7 @@ public class MovieService {
         return movies;
     }
 
+    public Movie getMovieById(int id) {
+        return movieRepository.findById(id).orElse(null);
+    }
 }
