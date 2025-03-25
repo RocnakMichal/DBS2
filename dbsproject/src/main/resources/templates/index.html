@@ -12,6 +12,8 @@
     <a href="/register"><button>Register</button></a>
 </p>
 
+<a href="/movies"><button>View All Movies</button></a>
+
 <p th:if="${user != null}">
     Logged in as <strong th:text="${user.name}"></strong> (<span th:text="${user.role}"></span>)<br>
     <a href="/users"><button>Go to Users</button></a>

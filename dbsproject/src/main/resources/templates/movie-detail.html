@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Movie Detail</title>
+    <link rel="stylesheet" href="/styles/main.css"/>
+</head>
+<body>
+<h2 th:text="${movie.title}">Movie Title</h2>
+<p><strong>Genre:</strong> <span th:text="${movie.genre}"></span></p>
+<p><strong>Director:</strong> <span th:text="${movie.director}"></span></p>
+<p><strong>Year:</strong> <span th:text="${movie.releaseYear}"></span></p>
+<p><strong>Description:</strong> <span th:text="${movie.description}"></span></p>
+
+<h3>Ratings</h3>
+<ul>
+    <li th:each="rating : ${movie.ratings}">
+        <span th:text="${rating.value}"></span>/5
+        - <span th:text="${rating.comment}"></span>
+        by <span th:text="${rating.user.name}"></span>
+    </li>
+</ul>
+
+<a th:href="@{/movies/rate/{id}(id=${movie.id})}"><button>Rate This Movie</button></a>
+<a href="/movies"><button>Back</button></a>
+</body>
+</html>

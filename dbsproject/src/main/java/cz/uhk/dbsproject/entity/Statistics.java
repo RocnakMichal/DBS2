@@ -5,8 +5,8 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "statistic")
-public class Statistic {
+@Table(name = "statistics")
+public class Statistics {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -18,7 +18,7 @@ public class Statistic {
     private int totalRecommendations;
     private LocalDateTime createdAt;
 
-    public Statistic() {
+    public Statistics() {
     }
 
     public int getId() {

@@ -13,7 +13,6 @@ public class Movie {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String title;
-    private String genre;
     private String director;
     private int releaseYear;
     @Lob
@@ -21,10 +20,13 @@ public class Movie {
     private String imageUrl;
     private LocalDateTime createdAt;
 
+    @ManyToOne
+    @JoinColumn(name = "genre_id")
+    private Genre genre;
     @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Rating> ratings = new ArrayList<>();
     @OneToOne(mappedBy = "movie", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Statistic statistics;
+    private Statistics statistics;
 
     public Movie() {
     }
@@ -39,14 +41,6 @@ public class Movie {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public String getGenre() {
-        return genre;
-    }
-
-    public void setGenre(String genre) {
-        this.genre = genre;
     }
 
     public String getDirector() {
@@ -89,6 +83,14 @@ public class Movie {
         this.createdAt = createdAt;
     }
 
+    public Genre getGenre() {
+        return genre;
+    }
+
+    public void setGenre(Genre genre) {
+        this.genre = genre;
+    }
+
     public List<Rating> getRatings() {
         return ratings;
     }
@@ -97,11 +99,11 @@ public class Movie {
         this.ratings = ratings;
     }
 
-    public Statistic getStatistics() {
+    public Statistics getStatistics() {
         return statistics;
     }
 
-    public void setStatistics(Statistic statistics) {
+    public void setStatistics(Statistics statistics) {
         this.statistics = statistics;
     }
 }

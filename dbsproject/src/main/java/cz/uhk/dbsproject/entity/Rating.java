@@ -21,7 +21,8 @@ public class Rating {
 
     private Movie movie;
 
-    private double rating;
+    @Column(name = "rating", nullable = false)
+    private double value;
     private String comment;
     private LocalDateTime createdAt;
 
@@ -48,12 +49,12 @@ public class Rating {
         this.movie = movie;
     }
 
-    public double getRating() {
-        return rating;
+    public double getValue() {
+        return value;
     }
 
-    public void setRating(double rating) {
-        this.rating = rating;
+    public void setValue(double value) {
+        this.value = value;
     }
 
     public String getComment() {
