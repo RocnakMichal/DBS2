@@ -19,6 +19,8 @@ public class MovieService {
 
     @Autowired
     private StatisticsService statisticsService;
+    @Autowired
+    private LogService logService;
     private final MovieRepository movieRepository;
     private final RatingRepository ratingRepository;
     private final StatisticsRepository statisticsRepository;
@@ -43,7 +45,7 @@ public class MovieService {
         return movie;
     }
 
-    public void saveMovie(Movie movie) {
+    public void saveMovie(Movie movie, MovieUser user) {
         movie.setCreatedAt(LocalDateTime.now());
         Movie savedMovie = movieRepository.save(movie);
 
@@ -55,6 +57,8 @@ public class MovieService {
         stats.setTotalRecommendations(0);
 
         statisticsRepository.save(stats);
+
+        logService.log(user, "Added movie: " + movie.getTitle());
     }
 
     public void deleteMovie(int id) {
@@ -75,6 +79,8 @@ public class MovieService {
         int totalRecommendations = 0;
 
         statisticsService.updateStatistics(movie, ratings, totalRecommendations);
+
+        logService.log(user, "Rated movie '" + movie.getTitle() + "' with " + rating.getValue());
     }
 
     public List<Movie> getMoviesSortedByTitle() {

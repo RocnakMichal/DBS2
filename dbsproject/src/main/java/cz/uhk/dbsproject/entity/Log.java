@@ -12,11 +12,12 @@ public class Log {
     private int id;
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private MovieUser movieUser;
+    private MovieUser user;
     private String action;
     private LocalDateTime timestamp;
 
     public Log() {
+        this.timestamp = LocalDateTime.now();
     }
 
     public int getId() {
@@ -24,11 +25,11 @@ public class Log {
     }
 
     public MovieUser getUser() {
-        return movieUser;
+        return user;
     }
 
-    public void setMovieUser(MovieUser movieUser) {
-        this.movieUser = movieUser;
+    public void setUser(MovieUser movieUser) {
+        this.user = movieUser;
     }
 
     public String getAction() {

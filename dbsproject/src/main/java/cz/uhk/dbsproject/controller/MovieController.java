@@ -54,21 +54,16 @@ public class MovieController {
         if (session.getAttribute("user") == null) return "redirect:/login";
 
         model.addAttribute("movie", new Movie());
+
         return "add-movie";
     }
 
     // Submit new movie
     @PostMapping("/add")
-    public String addMovie(
-            @RequestParam String title,
-            @RequestParam(required = false) Integer genreId,
-            @RequestParam(required = false) String newGenre,
-            @RequestParam String director,
-            @RequestParam int releaseYear,
-            @RequestParam String description,
-            @RequestParam(required = false) String imageUrl,
-            HttpSession session
-    ) {
+    public String addMovie(@RequestParam String title, @RequestParam(required = false) Integer genreId,
+                           @RequestParam(required = false) String newGenre, @RequestParam String director,
+                           @RequestParam int releaseYear, @RequestParam String description,
+                           @RequestParam(required = false) String imageUrl, HttpSession session) {
         if (session.getAttribute("user") == null) return "redirect:/login";
 
         Movie movie = new Movie();
@@ -94,7 +89,9 @@ public class MovieController {
         }
 
         movie.setGenre(genre);
-        movieService.saveMovie(movie);
+
+        MovieUser user = (MovieUser) session.getAttribute("user");
+        movieService.saveMovie(movie, user);
 
         return "redirect:/movies";
     }
