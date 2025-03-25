@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Welcome to MovieApp</title>
+    <link rel="stylesheet" href="/styles/main.css">
+</head>
+<body>
+<h1>🎬 Welcome to MovieApp</h1>
+
+<p th:if="${user == null}">
+    <a href="/login"><button>Login</button></a>
+    <a href="/register"><button>Register</button></a>
+</p>
+
+<p th:if="${user != null}">
+    Logged in as <strong th:text="${user.name}"></strong> (<span th:text="${user.role}"></span>)<br>
+    <a href="/users"><button>Go to Users</button></a>
+    <a href="/logout"><button>Logout</button></a>
+</p>
+
+<hr>
+<footer>
+    <p>DBS Project &copy; 2025</p>
+</footer>
+</body>
+</html>
