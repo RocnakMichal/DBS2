@@ -56,6 +56,24 @@
         </select>
         <button type="submit">Add Movie</button>
     </form>
+
+    <h3>Recommended Movie for This Group</h3>
+
+    <div th:if="${recommendedMovie != null}">
+        <p>
+            <strong>Title:</strong> <span th:text="${recommendedMovie.title}"></span><br>
+            <strong>Director:</strong> <span th:text="${recommendedMovie.director}"></span><br>
+            <strong>Year:</strong> <span th:text="${recommendedMovie.releaseYear}"></span>
+        </p>
+
+        <form th:action="@{/groups/{id}/reroll(id=${group.id})}" method="post">
+            <button type="submit">Reroll Recommendation</button>
+        </form>
+    </div>
+
+    <div th:if="${recommendedMovie == null}">
+        <p>No recommended movie found yet.</p>
+    </div>
 </div>
 
 <a href="/groups"><button>Back</button></a>

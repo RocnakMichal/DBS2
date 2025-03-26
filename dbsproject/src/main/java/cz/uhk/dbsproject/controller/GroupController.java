@@ -3,10 +3,7 @@ package cz.uhk.dbsproject.controller;
 import cz.uhk.dbsproject.entity.Movie;
 import cz.uhk.dbsproject.entity.MovieUser;
 import cz.uhk.dbsproject.entity.UserGroup;
-import cz.uhk.dbsproject.service.GroupMovieService;
-import cz.uhk.dbsproject.service.GroupService;
-import cz.uhk.dbsproject.service.LogService;
-import cz.uhk.dbsproject.service.MovieService;
+import cz.uhk.dbsproject.service.*;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,15 +18,14 @@ public class GroupController {
 
     @Autowired
     private GroupService groupService;
-
     @Autowired
     private GroupMovieService groupMovieService;
-
     @Autowired
     private MovieService movieService;
-
     @Autowired
     private LogService logService;
+    @Autowired
+    private RecommendationService recommendationService;
 
     @GetMapping
     public String listGroups(Model model, HttpSession session) {
@@ -128,5 +124,25 @@ public class GroupController {
         Movie movie = movieService.getMovieById(movieId);
         groupMovieService.addMovieToGroup(group, movie);
         return "redirect:/groups/" + id;
+    }
+
+    @GetMapping("/groups/{id}/recommend")
+    public String showRecommendation(@PathVariable int id, Model model, HttpSession session) {
+        MovieUser user = (MovieUser) session.getAttribute("user");
+        if (user == null) return "redirect:/login";
+
+        UserGroup group = groupService.getGroupById(id);
+        if (group == null) return "redirect:/groups";
+
+        boolean isMember = groupService.isMember(group, user);
+
+        model.addAttribute("group", group);
+        model.addAttribute("allMovies", movieService.getAllMovies());
+        model.addAttribute("isMember", isMember);
+
+        Movie recommendedMovie = recommendationService.getRecommendedMovieForGroup(group);
+        model.addAttribute("recommendedMovie", recommendedMovie);
+
+        return "group-detail";
     }
 }
