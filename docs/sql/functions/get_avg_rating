@@ -1,10 +1,10 @@
-CREATE OR REPLACE FUNCTION get_avg_rating(movie_id INT)
+CREATE OR REPLACE FUNCTION get_avg_rating(p_movie_id INT)
 RETURNS NUMERIC AS $$
 BEGIN
   RETURN (
     SELECT AVG(rating)
     FROM rating
-    WHERE movie_id = get_avg_rating.movie_id
+    WHERE movie_id = p_movie_id
   );
 END;
 $$ LANGUAGE plpgsql;
