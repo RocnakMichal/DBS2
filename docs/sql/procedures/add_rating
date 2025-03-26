@@ -1,0 +1,16 @@
+CREATE OR REPLACE PROCEDURE add_rating(
+  user_id INT,
+  movie_id INT,
+  rating_value DOUBLE PRECISION,
+  comment TEXT
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+  INSERT INTO rating (user_id, movie_id, rating, comment, created_at)
+  VALUES (user_id, movie_id, rating_value, comment, NOW());
+
+  INSERT INTO log (movie_user_id, action, timestamp)
+  VALUES (user_id, 'Added rating for movie ID ' || movie_id, NOW());
+END;
+$$;

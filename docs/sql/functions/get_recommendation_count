@@ -1,0 +1,10 @@
+CREATE OR REPLACE FUNCTION get_recommendation_count(movie_id INT)
+RETURNS INT AS $$
+BEGIN
+  RETURN (
+    SELECT COUNT(*)
+    FROM recommendation
+    WHERE recommended_movie_id = movie_id
+  );
+END;
+$$ LANGUAGE plpgsql;
