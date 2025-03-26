@@ -1,6 +1,9 @@
 package cz.uhk.dbsproject.controller;
 
+import cz.uhk.dbsproject.entity.BestRatedMovieView;
+import cz.uhk.dbsproject.entity.MostRecommendedMovieView;
 import cz.uhk.dbsproject.entity.MovieUser;
+import cz.uhk.dbsproject.entity.UserActivitySummaryView;
 import cz.uhk.dbsproject.repository.BestRatedMovieViewRepository;
 import cz.uhk.dbsproject.repository.MostRecommendedMovieViewRepository;
 import cz.uhk.dbsproject.repository.UserActivitySummaryViewRepository;
@@ -11,6 +14,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/admin")
@@ -50,9 +55,13 @@ public class AdminController {
 
     @GetMapping("/views")
     public String showViews(Model model) {
-        model.addAttribute("bestRated", movieRatingViewRepository.findAll());
-        model.addAttribute("mostRecommended", recoMovieViewRepository.findAll());
-        model.addAttribute("userActivity", activityViewRepository.findAll());
+        List<BestRatedMovieView> bestRated = movieRatingViewRepository.findAll();
+        List<MostRecommendedMovieView> mostRecommended = recoMovieViewRepository.findAll();
+        List<UserActivitySummaryView> userActivity = activityViewRepository.findAll();
+
+        model.addAttribute("bestRated", bestRated);
+        model.addAttribute("mostRecommended", mostRecommended);
+        model.addAttribute("userActivity", userActivity);
         return "admin/views";
     }
 }
