@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
 <head>
     <title>User Management</title>
     <link rel="stylesheet" type="text/css" href="/styles/main.css">
 </head>
 <body>
+<div layout:fragment="content">
 <h2>User Management</h2>
 
 <p th:if="${user != null}">
@@ -41,5 +44,6 @@
 </table>
 
 <script src="/scripts/script.js"></script>
+</div>
 </body>
 </html>

@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
 <head>
     <title>Login</title>
     <link rel="stylesheet" href="/styles/main.css">
 </head>
 <body>
+<div layout:fragment="content">
 <h2>Login</h2>
 
 <form method="post" action="/login">
@@ -16,5 +19,6 @@
 <p>Don't have an account? <a href="/register">Register here</a></p>
 
 <p th:if="${error}" style="color:red" th:text="${error}"></p>
+</div>
 </body>
 </html>
