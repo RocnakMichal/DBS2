@@ -1,0 +1,11 @@
+CREATE OR REPLACE PROCEDURE join_group(user_id INT, group_id INT)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+  INSERT INTO group_member (user_id, group_id, joined_at)
+  VALUES (user_id, group_id, NOW());
+
+  INSERT INTO log (movie_user_id, action, timestamp)
+  VALUES (user_id, 'Joined group ID ' || group_id, NOW());
+END;
+$$;

@@ -1,0 +1,11 @@
+CREATE OR REPLACE VIEW user_activity_summary AS
+SELECT
+    u.id AS user_id,
+    u.name,
+    COUNT(DISTINCT r.id) AS rating_count,
+    COUNT(DISTINCT rec.id) AS recommendation_count
+FROM movie_user u
+LEFT JOIN rating r ON u.id = r.user_id
+LEFT JOIN recommendation rec ON u.id = rec.user_id
+GROUP BY u.id, u.name
+ORDER BY rating_count DESC;

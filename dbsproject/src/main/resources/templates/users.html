@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User Management</title>
+    <link rel="stylesheet" type="text/css" href="/styles/main.css">
+</head>
+<body>
+<h2>User Management</h2>
+
+<p th:if="${user != null}">
+    Logged in as <strong th:text="${user.name}"></strong> (<span th:text="${user.role}"></span>)
+    <a href="/logout"><button>Logout</button></a>
+</p>
+
+<a href="/"><button>Home</button></a>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Action</th>
+    </tr>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.name}"></td>
+        <td th:text="${user.email}"></td>
+        <td>
+            <form th:action="@{/users/delete/{id}(id=${user.id})}" method="post">
+                <input type="hidden" name="_method" value="delete"/>
+                <button type="submit" class="delete-button">Delete</button>
+            </form>
+        </td>
+    </tr>
+</table>
+
+<script src="/scripts/script.js"></script>
+</body>
+</html>

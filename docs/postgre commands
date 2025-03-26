@@ -1,0 +1,4 @@
+\dt         - show tables
+\dv         - show views
+\df         - show functions
+\c          - change db
