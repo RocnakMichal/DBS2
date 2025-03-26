@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Group list</title>
+    <link rel="stylesheet" href="/styles/main.css">
 </head>
 <body>
 
@@ -26,7 +27,7 @@
 <form action="/groups/create" method="post" onsubmit="return validateGroupForm()">
     <input type="text" name="name" placeholder="Group name" required />
 
-    <label>
+    <label class="checkbox-label">
         <input type="checkbox" name="isPrivate" id="privateCheckbox" onchange="togglePasswordField()" />
         Private
     </label>
