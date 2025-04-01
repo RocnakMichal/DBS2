@@ -10,13 +10,6 @@
 <div layout:fragment="content">
 <h2>User Management</h2>
 
-<p th:if="${user != null}">
-    Logged in as <strong th:text="${user.name}"></strong> (<span th:text="${user.role}"></span>)
-    <a href="/logout"><button>Logout</button></a>
-</p>
-
-<a href="/"><button>Home</button></a>
-
 <form action="/users/add" method="post">
     <input type="text" name="name" placeholder="Enter name" required>
     <input type="email" name="email" placeholder="Enter email" required>

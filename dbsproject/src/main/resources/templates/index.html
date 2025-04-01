@@ -8,31 +8,14 @@
 </head>
 <body>
 <div layout:fragment="content">
-<h1>🎬 Welcome to MovieApp</h1>
-
-<p th:if="${user == null}">
-    <a href="/login"><button>Login</button></a>
-    <a href="/register"><button>Register</button></a>
-</p>
-
-
+    <p th:if="${session.user == null}">
+        Please login</p>
 <div th:if="${session.user != null}">
     <p>Hello, <span th:text="${session.user.name}">User</span></p>
 </div>
 
-<div th:if="${session.user != null and session.user.role == 'ADMIN'}">
-    <a href="/admin/dashboard" class="button">Admin Panel</a>
-</div>
-
-<div class="action-buttons">
-    <a href="/movies" class="button">Browse Movies</a>
-    <a href="/groups" class="button">Browse Groups</a>
-</div>
-
-<p th:if="${user != null}">
-    Logged in as <strong th:text="${user.name}"></strong> (<span th:text="${user.role}"></span>)<br>
+<p th:if="${session.user != null and session.user.role == 'ADMIN'}">
     <a href="/users"><button>Go to Users</button></a>
-    <a href="/logout"><button>Logout</button></a>
 </p>
 
 <hr>

@@ -2,11 +2,34 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
   <title layout:title-pattern="$CONTENT_TITLE - MovieApp">MovieApp</title>
-  <link rel="stylesheet" href="/styles/main.css">
+  <link rel="stylesheet" href="/styles/layout.css">
+
 </head>
 <body>
 <header>
   <h1>MovieApp</h1>
+  <nav>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/movies">Movies</a></li>
+      <li><a href="/groups">Groups</a></li>
+
+      <th:block th:if="${session.user == null}">
+        <li class="user-info"><a href="/login">Login</a></li>
+        <li><a href="/register">Register</a></li>
+      </th:block>
+
+      <th:block th:if="${session.user != null}">
+        <li class="user-info">
+          <span style="color: white;">Hello, <span th:text="${session.user.name}">User</span></span>
+          <a href="/logout">Logout</a>
+        </li>
+        <li th:if="${session.user.role == 'ADMIN'}">
+          <a href="/admin/dashboard" class="admin-link">Admin Panel</a>
+        </li>
+      </th:block>
+    </ul>
+  </nav>
 </header>
 
 <main layout:fragment="content">
