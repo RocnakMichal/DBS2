@@ -4,6 +4,7 @@ import cz.uhk.dbsproject.entity.Genre;
 import cz.uhk.dbsproject.entity.Movie;
 import cz.uhk.dbsproject.entity.MovieUser;
 import cz.uhk.dbsproject.entity.Rating;
+import cz.uhk.dbsproject.repository.MovieRepository;
 import cz.uhk.dbsproject.service.GenreService;
 import cz.uhk.dbsproject.service.MovieService;
 import jakarta.servlet.http.HttpSession;
@@ -12,12 +13,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/movies")
 public class MovieController {
 
+    @Autowired
+    private MovieRepository movieRepository;
+
     private final MovieService movieService;
     private final GenreService genreService;
+
+
 
     @Autowired
     public MovieController(MovieService movieService, GenreService genreService) {
@@ -33,6 +41,12 @@ public class MovieController {
         model.addAttribute("movies", movieService.getAllMovies());
         model.addAttribute("user", session.getAttribute("user"));
         return "movies";
+    }
+
+    @GetMapping("/search")
+    @ResponseBody
+    public List<Movie> searchMovies(@RequestParam("query") String query) {
+        return movieRepository.findByTitleContainingIgnoreCase(query);
     }
 
     // Movie detail

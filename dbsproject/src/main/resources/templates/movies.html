@@ -10,6 +10,14 @@
 <div layout:fragment="content">
 <h2>All Movies</h2>
 
+
+    <form id="searchForm">
+        <input type="text" name="query" id="searchQuery" placeholder="Search by title" />
+        <button type="submit">Search</button>
+        <button type="button" id="resetSearch">Show All</button>
+    </form>
+
+
 <a href="/movies/add"><button>Add Movie</button></a>
 
 <table>
@@ -30,5 +38,46 @@
     </tr>
 </table>
 </div>
+
+
+<script>
+    document.getElementById('searchForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        performSearch();
+    });
+
+    document.getElementById('resetSearch').addEventListener('click', function() {
+        document.getElementById('searchQuery').value = '';
+        performSearch();
+    });
+
+    function performSearch() {
+        const query = document.getElementById('searchQuery').value;
+        fetch(`/movies/search?query=${encodeURIComponent(query)}`)
+            .then(response => response.json())
+            .then(movies => updateTable(movies));
+    }
+
+    function updateTable(movies) {
+        const tbody = document.getElementById('moviesBody');
+        tbody.innerHTML = '';
+
+        movies.forEach(movie => {
+            const row = document.createElement('tr');
+
+            row.innerHTML = `
+                <td>${movie.title}</td>
+                <td>${movie.genre?.name || ''}</td>
+                <td>${movie.releaseYear}</td>
+                <td>
+                    <a href="/movies/detail/${movie.id}"><button>Details</button></a>
+                    <a href="/movies/delete/${movie.id}"><button class="delete-button">Delete</button></a>
+                </td>
+            `;
+
+            tbody.appendChild(row);
+        });
+    }
+</script>
 </body>
 </html>
