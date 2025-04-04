@@ -20,7 +20,7 @@
 
 <a href="/movies/add"><button>Add Movie</button></a>
 
-<table>
+<table id="moviesTable">
     <tr>
         <th>Title</th>
         <th>Genre</th>
@@ -37,47 +37,49 @@
         </td>
     </tr>
 </table>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const searchForm = document.getElementById('searchForm');
+            const searchInput = document.getElementById('searchQuery');
+            const resetButton = document.getElementById('resetSearch');
+            const tableRows = document.querySelectorAll('#moviesTable tr:not(:first-child)'); // Skip header row
+
+            // Handle search form submission
+            searchForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                performSearch();
+            });
+
+            // Handle real-time input (optional)
+            searchInput.addEventListener('input', () => {
+                performSearch();
+            });
+
+            // Reset search
+            resetButton.addEventListener('click', () => {
+                searchInput.value = '';
+                performSearch();
+            });
+
+            function performSearch() {
+                const query = searchInput.value.toLowerCase().trim();
+
+                tableRows.forEach(row => {
+                    const cells = row.querySelectorAll('td');
+                    const title = cells[0].textContent.toLowerCase();
+                    const genre = cells[1].textContent.toLowerCase();
+                    const year = cells[2].textContent.toLowerCase();
+
+                    const match = title.includes(query) ||
+                        genre.includes(query) ||
+                        year.includes(query);
+
+                    row.style.display = match ? '' : 'none';
+                });
+            }
+        });
+    </script>
 </div>
 
-
-<script>
-    document.getElementById('searchForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        performSearch();
-    });
-
-    document.getElementById('resetSearch').addEventListener('click', function() {
-        document.getElementById('searchQuery').value = '';
-        performSearch();
-    });
-
-    function performSearch() {
-        const query = document.getElementById('searchQuery').value;
-        fetch(`/movies/search?query=${encodeURIComponent(query)}`)
-            .then(response => response.json())
-            .then(movies => updateTable(movies));
-    }
-
-    function updateTable(movies) {
-        const tbody = document.getElementById('moviesBody');
-        tbody.innerHTML = '';
-
-        movies.forEach(movie => {
-            const row = document.createElement('tr');
-
-            row.innerHTML = `
-                <td>${movie.title}</td>
-                <td>${movie.genre?.name || ''}</td>
-                <td>${movie.releaseYear}</td>
-                <td>
-                    <a href="/movies/detail/${movie.id}"><button>Details</button></a>
-                    <a href="/movies/delete/${movie.id}"><button class="delete-button">Delete</button></a>
-                </td>
-            `;
-
-            tbody.appendChild(row);
-        });
-    }
-</script>
 </body>
 </html>
