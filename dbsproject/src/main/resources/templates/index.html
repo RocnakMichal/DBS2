@@ -14,6 +14,14 @@
     <p>Hello, <span th:text="${session.user.name}">User</span></p>
 </div>
 
+    <p>
+        <a href="/movies"><button>Go to Movies</button></a>
+        <a href="/login"><button>Login</button></a>
+        <a href="/register"><button>Register</button></a>
+    </p>
+
+
+
 <p th:if="${session.user != null and session.user.role == 'ADMIN'}">
     <a href="/users"><button>Go to Users</button></a>
 </p>

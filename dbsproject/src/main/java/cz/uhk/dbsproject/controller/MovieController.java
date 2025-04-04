@@ -36,23 +36,17 @@ public class MovieController {
     // Show all movies
     @GetMapping
     public String showAllMovies(HttpSession session, Model model) {
-        if (session.getAttribute("user") == null) return "redirect:/login";
+       // if (session.getAttribute("user") == null) return "redirect:/login";
 
         model.addAttribute("movies", movieService.getAllMovies());
         model.addAttribute("user", session.getAttribute("user"));
         return "movies";
     }
 
-    @GetMapping("/search")
-    @ResponseBody
-    public List<Movie> searchMovies(@RequestParam("query") String query) {
-        return movieRepository.findByTitleContainingIgnoreCase(query);
-    }
-
     // Movie detail
     @GetMapping("/detail/{id}")
     public String movieDetail(@PathVariable int id, HttpSession session, Model model) {
-        if (session.getAttribute("user") == null) return "redirect:/login";
+        //if (session.getAttribute("user") == null) return "redirect:/login";
 
         Movie movie = movieService.getMovie(id);
         if (movie == null) return "redirect:/movies";
