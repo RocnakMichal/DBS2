@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="/styles/main.css"/>
 </head>
 <body>
+<header th:replace="~{layout :: page_header}">
+</header>
 <div layout:fragment="content">
 <h2>Rate Movie</h2>
 <p th:text="'Movie: ' + ${movie.title}">Movie Title</p>

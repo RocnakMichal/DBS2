@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout}">
@@ -6,27 +5,35 @@
     <title>Welcome to MovieApp</title>
     <link rel="stylesheet" href="/styles/main.css">
 </head>
+<header th:replace="~{layout :: page_header}">
+
+
+</header>
 <body>
-<div layout:fragment="content">
-    <p th:if="${session.user == null}">
-        Please login</p>
-<div th:if="${session.user != null}">
-    <p>Hello, <span th:text="${session.user.name}">User</span></p>
-</div>
+<!--<div layout:fragment="content">-->
+    <!-- Conditional messages -->
+   <!-- <p th:if="${session.user == null}">Please login</p>
+    <div th:if="${session.user != null}">
+        <p>Hello, <span th:text="${session.user.name}">User</span></p>
+    </div>-->
 
-    <p>
-        <a href="/movies"><button>Go to Movies</button></a>
-        <a href="/login"><button>Login</button></a>
-        <a href="/register"><button>Register</button></a>
-    </p>
+    <!-- Navigation buttons with proper conditional rendering -->
+   <!-- <div class="button-group">
+        <a href="/movies" class="btn"><button>Go to Movies</button></a>
+-->
+        <!-- Show login/register only when not logged in -->
+       <!-- <th:block th:unless="${session.user}">
+            <a href="/login" class="btn"><button>Login</button></a>
+            <a href="/register" class="btn"><button>Register</button></a>
+        </th:block>
+    </div>-->
 
-
-
-<p th:if="${session.user != null and session.user.role == 'ADMIN'}">
-    <a href="/users"><button>Go to Users</button></a>
-</p>
-
-<hr>
+    <!-- Admin-specific content -->
+    <!--<div th:if="${session.user != null and session.user.role == 'ADMIN'}">
+        <hr>
+        <a href="/users" class="btn"><button>Go to Users</button></a>
+    </div>-->
+<div>
 </div>
 </body>
 </html>
