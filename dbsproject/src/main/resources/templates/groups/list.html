@@ -3,46 +3,50 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout}">
 <head>
-  <meta charset="UTF-8">
-  <title>Group list</title>
+    <meta charset="UTF-8">
+    <title>Group list</title>
     <link rel="stylesheet" href="/styles/main.css">
 </head>
+<header th:replace="~{layout :: page_header}">
+</header>
 <body>
 <div layout:fragment="content">
 
-<h2>All Groups</h2>
+    <h2>All Groups</h2>
 
-<ul>
-    <li th:each="g : ${groups}">
-        <a th:href="@{/groups/{id}(id=${g.id})}" th:text="${g.name}">Group</a>
-        <span th:if="${g.private}">🔒</span>
-        <br/>
-        <small>
-            Owner: <span th:text="${g.owner.name}">Owner Name</span> |
-            Members: <span th:text="${g.groupMembers.size()}">0</span> |
-            Created: <span th:text="${#temporals.format(g.createdAt, 'yyyy-MM-dd')}">Date</span>
-        </small>
-        <hr/>
-    </li>
-</ul>
+    <ul>
+        <li th:each="g : ${groups}">
+            <a th:href="@{/groups/{id}(id=${g.id})}" th:text="${g.name}">Group</a>
+            <span th:if="${g.private}">🔒</span>
+            <br/>
+            <small>
+                Owner: <span th:text="${g.owner.name}">Owner Name</span> |
+                Members: <span th:text="${g.groupMembers.size()}">0</span> |
+                Created: <span th:text="${#temporals.format(g.createdAt, 'yyyy-MM-dd')}">Date</span>
+            </small>
+            <hr/>
+        </li>
+    </ul>
 
-<h3>Create a New Group</h3>
-<form action="/groups/create" method="post" onsubmit="return validateGroupForm()">
-    <input type="text" name="name" placeholder="Group name" required />
+    <h3>Create a New Group</h3>
+    <form action="/groups/create" method="post" onsubmit="return validateGroupForm()">
+        <input type="text" name="name" placeholder="Group name" required/>
 
-    <label class="checkbox-label">
-        <input type="checkbox" name="isPrivate" id="privateCheckbox" onchange="togglePasswordField()" />
-        Private
-    </label>
+        <label class="checkbox-label">
+            <input type="checkbox" name="isPrivate" id="privateCheckbox" onchange="togglePasswordField()"/>
+            Private
+        </label>
 
-    <div id="passwordField" style="display: none; margin-top: 8px;">
-        <input type="password" name="joinPassword" id="joinPassword" placeholder="Join password" />
-    </div>
+        <div id="passwordField" style="display: none; margin-top: 8px;">
+            <input type="password" name="joinPassword" id="joinPassword" placeholder="Join password" />
+        </div>
 
-    <button type="submit">Create Group</button>
-</form>
+        <button type="submit">Create Group</button>
+    </form>
 
-<script src="/scripts/groups.js"></script>
+    <script src="/scripts/groups.js"></script>
 </div>
 </body>
+<footer th:replace="~{layout :: page_footer}">
+</footer>
 </html>

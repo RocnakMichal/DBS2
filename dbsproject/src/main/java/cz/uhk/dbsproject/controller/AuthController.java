@@ -8,6 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+
+
 
 @Controller
 public class AuthController {
@@ -18,6 +22,9 @@ public class AuthController {
     @Autowired
     private LogService logService;
 
+    private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+
     @GetMapping("/login")
     public String loginForm() {
         return "login";
@@ -26,10 +33,12 @@ public class AuthController {
     @PostMapping("/login")
     public String login(@RequestParam String email, @RequestParam String password, HttpSession session, Model model) {
         MovieUser user = userRepository.findByEmail(email);
-        if (user != null && user.getPasswordHash().equals(password)) {
+        System.out.println(user.getPasswordHash());
+        if (user != null && passwordEncoder.matches(password, user.getPasswordHash()))
+        {
             session.setAttribute("user", user);
             logService.log(user, "User logged in");
-            return "redirect:/users";
+            return "redirect:/movies";
         } else {
             model.addAttribute("error", "Invalid email or password");
             return "login";
@@ -46,7 +55,7 @@ public class AuthController {
         MovieUser user = new MovieUser();
         user.setName(name);
         user.setEmail(email);
-        user.setPasswordHash(password);
+        user.setPasswordHash(passwordEncoder.encode(password));
         user.setRole("USER");
         userRepository.save(user);
         logService.log(user, "User Registered");

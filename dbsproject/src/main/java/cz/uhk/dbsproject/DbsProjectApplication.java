@@ -6,9 +6,13 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @SpringBootApplication
 public class DbsProjectApplication {
+
+    private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
     public static void main(String[] args) {
         SpringApplication.run(DbsProjectApplication.class, args);
     }
@@ -21,7 +25,7 @@ public class DbsProjectApplication {
                 MovieUser admin = new MovieUser();
                 admin.setName("admin");
                 admin.setEmail(adminMail);
-                admin.setPasswordHash("password");
+                admin.setPasswordHash(passwordEncoder.encode("password"));
                 admin.setRole("ADMIN");
                 repo.save(admin);
             }

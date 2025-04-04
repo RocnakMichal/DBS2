@@ -10,35 +10,37 @@
 </header>
 <body>
 <div layout:fragment="content">
-<h2>User Management</h2>
+    <h2>User Management</h2>
 
-<form action="/users/add" method="post">
-    <input type="text" name="name" placeholder="Enter name" required>
-    <input type="email" name="email" placeholder="Enter email" required>
-    <button type="submit">Add User</button>
-</form>
+    <form th:if="${session.user.role == 'ADMIN'}" action="/users/add" method="post">
+        <input type="text" name="name" placeholder="Enter name" required>
+        <input type="email" name="email" placeholder="Enter email" required>
+        <button type="submit">Add User</button>
+    </form>
 
-<table>
-    <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Action</th>
-    </tr>
-    <tr th:each="user : ${users}">
-        <td th:text="${user.id}"></td>
-        <td th:text="${user.name}"></td>
-        <td th:text="${user.email}"></td>
-        <td>
-            <form th:action="@{/users/delete/{id}(id=${user.id})}" method="post">
-                <input type="hidden" name="_method" value="delete"/>
-                <button type="submit" class="delete-button">Delete</button>
-            </form>
-        </td>
-    </tr>
-</table>
+    <table>
+        <tr>
+            <th th:if="${session.user.role == 'ADMIN'}">ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th th:if="${session.user.role == 'ADMIN'}">Action</th>
+        </tr>
+        <tr th:each="user : ${users}">
+            <td th:if="${session.user.role == 'ADMIN'}" th:text="${user.id}"></td>
+            <td th:text="${user.name}"></td>
+            <td th:text="${user.email}"></td>
+            <td th:if="${session.user.role == 'ADMIN'}">
+                <form th:action="@{/users/delete/{id}(id=${user.id})}" method="post">
+                    <input type="hidden" name="_method" value="delete"/>
+                    <button type="submit" class="delete-button">Delete</button>
+                </form>
+            </td>
+        </tr>
+    </table>
 
-<script src="/scripts/script.js"></script>
+    <script src="/scripts/script.js"></script>
 </div>
 </body>
+<footer th:replace="~{layout :: page_footer}">
+</footer>
 </html>

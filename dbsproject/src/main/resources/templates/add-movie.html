@@ -10,37 +10,41 @@
 </header>
 <body>
 <div layout:fragment="content">
-<h2>Add Movie</h2>
+    <h2>Add Movie</h2>
 
-<form action="/movies/add" method="post" th:object="${movie}">
-    <label>Title:</label>
-    <input th:field="*{title}" required /><br>
+    <form action="/movies/add" method="post" th:object="${movie}">
+        <label>Title:</label>
+        <input th:field="*{title}" required/><br>
 
-    <label>Choose existing genre:</label>
-    <select name="genreId">
-        <option value="">-- None --</option>
-        <option th:each="g : ${genres}" th:value="${g.id}" th:text="${g.name}"></option>
-    </select><br>
+        <label>Choose existing genre:</label>
+        <select name="genreId">
+            <option value="">-- None --</option>
+            <option th:each="g : ${genres}" th:value="${g.id}" th:text="${g.name}"></option>
+        </select><br>
 
-    <label>Or add new genre:</label>
-    <input type="text" name="newGenre"><br>
+        <label>Or add new genre:</label>
+        <input type="text" name="newGenre"><br>
 
-    <label>Director:</label>
-    <input th:field="*{director}" required /><br>
+        <label>Director:</label>
+        <input th:field="*{director}" required/><br>
 
-    <label>Release Year:</label>
-    <input th:field="*{releaseYear}" type="number" /><br>
+        <label>Release Year:</label>
+        <input th:field="*{releaseYear}" type="number"/><br>
 
-    <label>Description:</label><br>
-    <textarea th:field="*{description}"></textarea><br>
+        <label>Description:</label><br>
+        <textarea th:field="*{description}"></textarea><br>
 
-    <label>Image URL:</label><br>
-    <input th:field="*{imageUrl}" /><br>
+        <label>Image URL:</label><br>
+        <input th:field="*{imageUrl}"/><br>
 
-    <button type="submit">Add Movie</button>
-</form>
+        <button type="submit">Add Movie</button>
+    </form>
 
-<a href="/movies"><button>Back</button></a>
+    <a href="/movies">
+        <button>Back</button>
+    </a>
 </div>
 </body>
+<footer th:replace="~{layout :: page_footer}">
+</footer>
 </html>
