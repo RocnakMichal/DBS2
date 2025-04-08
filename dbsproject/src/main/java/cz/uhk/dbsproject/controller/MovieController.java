@@ -69,7 +69,7 @@ public class MovieController {
         if (session.getAttribute("user") == null) return "redirect:/login";
 
         model.addAttribute("movie", new Movie());
-
+        model.addAttribute("genres", genreService.getAllGenres());
         return "add-movie";
     }
 
