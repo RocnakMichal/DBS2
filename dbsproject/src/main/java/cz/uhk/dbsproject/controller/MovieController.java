@@ -7,6 +7,7 @@ import cz.uhk.dbsproject.entity.Rating;
 import cz.uhk.dbsproject.repository.MovieRepository;
 import cz.uhk.dbsproject.service.GenreService;
 import cz.uhk.dbsproject.service.MovieService;
+import cz.uhk.dbsproject.service.RecommendationService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,11 +22,11 @@ public class MovieController {
 
     @Autowired
     private MovieRepository movieRepository;
+    @Autowired
+    private RecommendationService recommendationService;
 
     private final MovieService movieService;
     private final GenreService genreService;
-
-
 
     @Autowired
     public MovieController(MovieService movieService, GenreService genreService) {
@@ -107,7 +108,10 @@ public class MovieController {
     // Delete movie
     @GetMapping("/delete/{id}")
     public String deleteMovie(@PathVariable int id, HttpSession session) {
-        if (session.getAttribute("user") == null) return "redirect:/login";
+        MovieUser user = (MovieUser) session.getAttribute("user");
+        if (user == null || !"ADMIN".equals(user.getRole())) {
+            return "redirect:/movies";
+        }
 
         movieService.deleteMovie(id);
         return "redirect:/movies";
@@ -136,12 +140,35 @@ public class MovieController {
         return "redirect:/movies/detail/" + id;
     }
 
-    // Placeholder for recommended
-    @GetMapping("/recommended")
-    public String recommendedMovies(HttpSession session, Model model) {
-        if (session.getAttribute("user") == null) return "redirect:/login";
+    @GetMapping("/recommendations")
+    public String viewRecommendations(HttpSession session, Model model) {
+        MovieUser user = (MovieUser) session.getAttribute("user");
+        if (user == null) return "redirect:/login";
 
-        model.addAttribute("movies", movieService.getAllMovies()); // Replace with real logic
-        return "recommended";
+        List<Recommendation> recommendations = recommendationService.getByUser(user);
+        model.addAttribute("recommendations", recommendations);
+        return "recommendations/list";
+    }
+
+    @PostMapping("/{id}/delete-rating")
+    public String deleteRating(@PathVariable int id, HttpSession session) {
+        MovieUser user = (MovieUser) session.getAttribute("user");
+        if (user == null) return "redirect:/login";
+
+        Movie movie = movieService.getMovieById(id);
+        movieService.deleteRating(movie, user);
+
+        return "redirect:/movies/detail/" + id;
+    }
+
+    @PostMapping("/recommend/{id}")
+    public String toggleRecommendation(@PathVariable int id, HttpSession session) {
+        MovieUser user = (MovieUser) session.getAttribute("user");
+        if (user == null) return "redirect:/login";
+
+        Movie movie = movieService.getMovieById(id);
+        recommendationService.toggleRecommendation(movie, user);
+
+        return "redirect:/movies/detail/" + id;
     }
 }

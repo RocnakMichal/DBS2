@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Database Views</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+<h1>Statistics Views</h1>
+
+<!-- Best Rated Movies -->
+<section>
+    <h2>Best Rated Movies</h2>
+    <table>
+        <tr>
+            <th>Movie ID</th>
+            <th>Title</th>
+            <th>Average Rating</th>
+            <th>Total Ratings</th>
+        </tr>
+        <tr th:each="movie : ${bestRated}">
+            <td th:text="${movie.movieId}"></td>
+            <td th:text="${movie.title}"></td>
+            <td th:text="${movie.avgRating}"></td>
+            <td th:text="${movie.totalRatings}"></td>
+        </tr>
+    </table>
+</section>
+
+<!-- Most Recommended Movies -->
+<section style="margin-top: 30px;">
+    <h2>Most Recommended Movies</h2>
+    <table>
+        <tr>
+            <th>Movie ID</th>
+            <th>Title</th>
+            <th>Total Recommendations</th>
+        </tr>
+        <tr th:each="movie : ${mostRecommended}">
+            <td th:text="${movie.movieId}"></td>
+            <td th:text="${movie.title}"></td>
+            <td th:text="${movie.totalRecommendations}"></td>
+        </tr>
+    </table>
+</section>
+
+<!-- User Activity -->
+<section style="margin-top: 30px;">
+    <h2>User Activity Summary</h2>
+    <table>
+        <tr>
+            <th>User ID</th>
+            <th>Name</th>
+            <th>Ratings</th>
+            <th>Recommendations</th>
+        </tr>
+        <tr th:each="user : ${userActivity}">
+            <td th:text="${user.userId}"></td>
+            <td th:text="${user.name}"></td>
+            <td th:text="${user.ratingCount}"></td>
+            <td th:text="${user.recommendationCount}"></td>
+        </tr>
+    </table>
+</section>
+
+<a href="/admin/dashboard" style="margin-top: 40px; display: inline-block;">Back to Admin Dashboard</a>
+
+</body>
+</html>
