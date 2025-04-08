@@ -51,9 +51,11 @@
     <div class="section button-group">
         <a th:href="@{/movies/rate/{id}(id=${movie.id})}" class="button">Rate This Movie</a>
 
-        <a th:if="${userRating != null}"
-           th:href="@{/movies/{id}/delete-rating(id=${movie.id})}"
-           class="button delete-button">Delete My Rating</a>
+        <form th:if="${userRating != null}"
+              th:action="@{/movies/{id}/delete-rating(id=${movie.id})}"
+              method="post">
+            <button type="submit" class="button delete-button">Delete My Rating</button>
+        </form>
 
         <form th:action="@{/movies/recommend/{id}(id=${movie.id})}" method="post" class="inline-form">
             <button type="submit" class="button"
