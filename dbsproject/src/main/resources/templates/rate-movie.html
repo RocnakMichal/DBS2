@@ -7,21 +7,27 @@
     <link rel="stylesheet" href="/styles/main.css"/>
 </head>
 <body>
+<header th:replace="~{layout :: page_header}">
+</header>
 <div layout:fragment="content">
-<h2>Rate Movie</h2>
-<p th:text="'Movie: ' + ${movie.title}">Movie Title</p>
+    <h2>Rate Movie</h2>
+    <p th:text="'Movie: ' + ${movie.title}">Movie Title</p>
 
-<form th:action="@{/movies/rate/{id}(id=${movie.id})}" method="post" th:object="${rating}">
-    <label>Rating (0.5 to 5):</label>
-    <input th:field="*{value}" type="number" step="0.5" min="0.5" max="5" required /><br>
+    <form th:action="@{/movies/rate/{id}(id=${movie.id})}" method="post" th:object="${rating}">
+        <label>Rating (0.5 to 5):</label>
+        <input th:field="*{value}" type="number" step="0.5" min="0.5" max="5" required/><br>
 
-    <label>Comment:</label><br>
-    <textarea th:field="*{comment}" rows="3"></textarea><br>
+        <label>Comment:</label><br>
+        <textarea th:field="*{comment}" rows="3"></textarea><br>
 
-    <button type="submit">Submit Rating</button>
-</form>
+        <button type="submit">Submit Rating</button>
+    </form>
 
-<a th:href="@{/movies/detail/{id}(id=${movie.id})}"><button>Back</button></a>
+    <a th:href="@{/movies/detail/{id}(id=${movie.id})}">
+        <button>Back</button>
+    </a>
 </div>
 </body>
+<footer th:replace="~{layout :: page_footer}">
+</footer>
 </html>

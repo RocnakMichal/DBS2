@@ -6,24 +6,28 @@
     <title>User Activity Logs</title>
     <link rel="stylesheet" href="/styles/main.css">
 </head>
+<header th:replace="~{layout :: page_header}">
+</header>
 <body>
 <div layout:fragment="content">
-<h2>User Logs</h2>
+    <h2>User Logs</h2>
 
-<table border="1">
-    <tr>
-        <th>User</th>
-        <th>Action</th>
-        <th>Timestamp</th>
-    </tr>
-    <tr th:each="log : ${logs}">
-        <td th:text="${log.user.name}"></td>
-        <td th:text="${log.action}"></td>
-        <td th:text="${#temporals.format(log.timestamp, 'yyyy-MM-dd HH:mm')}"></td>
-    </tr>
-</table>
+    <table border="1">
+        <tr>
+            <th>User</th>
+            <th>Action</th>
+            <th>Timestamp</th>
+        </tr>
+        <tr th:each="log : ${logs}">
+            <td th:text="${log.user.name}"></td>
+            <td th:text="${log.action}"></td>
+            <td th:text="${#temporals.format(log.timestamp, 'yyyy-MM-dd HH:mm')}"></td>
+        </tr>
+    </table>
 
-<a href="/admin/dashboard">Back to Admin</a>
+    <a href="/admin/dashboard">Back to Admin</a>
 </div>
 </body>
+<footer th:replace="~{layout :: page_footer}">
+</footer>
 </html>

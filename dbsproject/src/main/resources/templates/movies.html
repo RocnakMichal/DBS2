@@ -1,34 +1,98 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
+<!--<!DOCTYPE html>-->
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout}">
 <head>
     <title>Movies</title>
     <link rel="stylesheet" href="/styles/main.css"/>
 </head>
+
 <body>
+
+<header th:replace="~{layout :: page_header}">
+</header>
 <div layout:fragment="content">
-<h2>All Movies</h2>
+    <h2>All Movies</h2>
 
-<a href="/movies/add"><button>Add Movie</button></a>
 
-<table>
-    <tr>
-        <th>Title</th>
-        <th>Genre</th>
-        <th>Year</th>
-        <th>Action</th>
-    </tr>
-    <tr th:each="movie : ${movies}">
-        <td th:text="${movie.title}">Title</td>
-        <td th:text="${movie.genre.name}">Genre</td>
-        <td th:text="${movie.releaseYear}">Year</td>
-        <td>
-            <a th:href="@{/movies/detail/{id}(id=${movie.id})}"><button>Details</button></a>
-            <a th:href="@{/movies/delete/{id}(id=${movie.id})}"><button class="delete-button">Delete</button></a>
-        </td>
-    </tr>
-</table>
+    <form id="searchForm">
+        <input type="text" name="query" id="searchQuery" placeholder="Search by title"/>
+        <button type="submit">Search</button>
+        <button type="button" id="resetSearch">Show All</button>
+    </form>
+    <p th:if="${session.user != null and session.user.role == 'ADMIN'}">
+        <a href="/movies/add">
+            <button>Add Movie</button>
+        </a>
+    </p>
+
+
+    <table id="moviesTable">
+        <tr>
+            <th>Title</th>
+            <th>Genre</th>
+            <th>Year</th>
+            <th>Action</th>
+        </tr>
+        <tr th:each="movie : ${movies}">
+            <td th:text="${movie.title}">Title</td>
+            <td th:text="${movie.genre.name}">Genre</td>
+            <td th:text="${movie.releaseYear}">Year</td>
+            <td>
+                <a th:href="@{/movies/detail/{id}(id=${movie.id})}">
+                    <button>Details</button>
+                </a>
+                <a th:if="${session.user.role == 'ADMIN'}" th:href="@{/movies/delete/{id}(id=${movie.id})}">
+                    <button class="delete-button">Delete</button>
+                </a>
+            </td>
+        </tr>
+    </table>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const searchForm = document.getElementById('searchForm');
+            const searchInput = document.getElementById('searchQuery');
+            const resetButton = document.getElementById('resetSearch');
+            const tableRows = document.querySelectorAll('#moviesTable tr:not(:first-child)'); // Skip header row
+
+            // Handle search form submission
+            searchForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                performSearch();
+            });
+
+            // Handle real-time input (optional)
+            searchInput.addEventListener('input', () => {
+                performSearch();
+            });
+
+            // Reset search
+            resetButton.addEventListener('click', () => {
+                searchInput.value = '';
+                performSearch();
+            });
+
+            function performSearch() {
+                const query = searchInput.value.toLowerCase().trim();
+
+                tableRows.forEach(row => {
+                    const cells = row.querySelectorAll('td');
+                    const title = cells[0].textContent.toLowerCase();
+                    const genre = cells[1].textContent.toLowerCase();
+                    const year = cells[2].textContent.toLowerCase();
+
+                    const match = title.includes(query) ||
+                        genre.includes(query) ||
+                        year.includes(query);
+
+                    row.style.display = match ? '' : 'none';
+                });
+            }
+        });
+    </script>
 </div>
+
 </body>
 </html>

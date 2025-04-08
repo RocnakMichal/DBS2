@@ -6,38 +6,46 @@
     <title>Movie Detail</title>
     <link rel="stylesheet" href="/styles/main.css"/>
 </head>
+<header th:replace="~{layout :: page_header}">
+</header>
 <body>
 <div layout:fragment="content">
-<h2 th:text="${movie.title}">Movie Title</h2>
-<p><strong>Genre:</strong> <span th:text="${movie.genre}"></span></p>
-<p><strong>Director:</strong> <span th:text="${movie.director}"></span></p>
-<p><strong>Year:</strong> <span th:text="${movie.releaseYear}"></span></p>
-<p><strong>Description:</strong> <span th:text="${movie.description}"></span></p>
+    <h2 th:text="${movie.title}">Movie Title</h2>
+    <p><strong>Genre:</strong> <span th:text="${movie.genre.getName()}"></span></p>
+    <p><strong>Director:</strong> <span th:text="${movie.director}"></span></p>
+    <p><strong>Year:</strong> <span th:text="${movie.releaseYear}"></span></p>
+    <p><strong>Description:</strong> <span th:text="${movie.description}"></span></p>
 
-<h3>Statistics</h3>
-<div th:if="${movie.statistics != null}">
+    <h3>Statistics</h3>
+    <div th:if="${movie.statistics != null}">
+        <ul>
+            <li th:text="'Average Rating: ' + ${movie.statistics.avgRating}"></li>
+            <li th:text="'Total Ratings: ' + ${movie.statistics.totalRatings}"></li>
+            <li th:text="'Recommendations: ' + ${movie.statistics.totalRecommendations}"></li>
+        </ul>
+    </div>
+
+    <div th:if="${movie.statistics == null}">
+        <p>No statistics available for this movie yet.</p>
+    </div>
+
+    <h3>Ratings</h3>
     <ul>
-        <li th:text="'Average Rating: ' + ${movie.statistics.avgRating}"></li>
-        <li th:text="'Total Ratings: ' + ${movie.statistics.totalRatings}"></li>
-        <li th:text="'Recommendations: ' + ${movie.statistics.totalRecommendations}"></li>
+        <li th:each="rating : ${movie.ratings}">
+            <span th:text="${rating.value}"></span>/5
+            - <span th:text="${rating.comment}"></span>
+            by <span th:text="${rating.user.name}"></span>
+        </li>
     </ul>
-</div>
 
-<div th:if="${movie.statistics == null}">
-    <p>No statistics available for this movie yet.</p>
-</div>
-
-<h3>Ratings</h3>
-<ul>
-    <li th:each="rating : ${movie.ratings}">
-        <span th:text="${rating.value}"></span>/5
-        - <span th:text="${rating.comment}"></span>
-        by <span th:text="${rating.user.name}"></span>
-    </li>
-</ul>
-
-<a th:href="@{/movies/rate/{id}(id=${movie.id})}"><button>Rate This Movie</button></a>
-<a href="/movies"><button>Back</button></a>
+    <a th:href="@{/movies/rate/{id}(id=${movie.id})}">
+        <button>Rate This Movie</button>
+    </a>
+    <a href="/movies">
+        <button>Back</button>
+    </a>
 </div>
 </body>
+<footer th:replace="~{layout :: page_footer}">
+</footer>
 </html>

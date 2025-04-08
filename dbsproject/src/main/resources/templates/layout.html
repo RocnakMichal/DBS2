@@ -3,41 +3,46 @@
 <head>
   <title layout:title-pattern="$CONTENT_TITLE - MovieApp">MovieApp</title>
   <link rel="stylesheet" href="/styles/layout.css">
-
 </head>
 <body>
-<header>
+<header th:fragment="page_header">
   <h1>MovieApp</h1>
   <nav>
-    <ul>
+    <ul style="list-style: none; display: flex; gap: 1rem; padding: 0; margin: 0;">
       <li><a href="/">Home</a></li>
       <li><a href="/movies">Movies</a></li>
       <li><a href="/groups">Groups</a></li>
+      <!--Maybe let only for admin -->
+      <li><a href="/users">Users</a></li>
 
+
+      <div class="user-info" style="margin-left: auto;">
       <th:block th:if="${session.user == null}">
-        <li class="user-info"><a href="/login">Login</a></li>
+        <li ><a href="/login">Login</a></li>
         <li><a href="/register">Register</a></li>
       </th:block>
 
       <th:block th:if="${session.user != null}">
-        <li class="user-info">
+        <li class="user-info" style="margin-left: auto;">
           <span style="color: white;">Hello, <span th:text="${session.user.name}">User</span></span>
           <a href="/logout">Logout</a>
         </li>
-        <li th:if="${session.user.role == 'ADMIN'}">
-          <a href="/admin/dashboard" class="admin-link">Admin Panel</a>
-        </li>
+        <li th:if="${session.user.role == 'ADMIN'}"><a href="/admin/dashboard">Admin Panel</a></li>
       </th:block>
+      </div>
     </ul>
   </nav>
+
+
 </header>
 
 <main layout:fragment="content">
-
+  <!-- Content from child templates will replace this block -->
 </main>
 
-<footer>
+<footer th:fragment="page_footer">
   <p>DBS Project &copy; 2025</p>
+
 </footer>
 </body>
 </html>

@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout}">
@@ -6,19 +5,57 @@
     <title>Welcome to MovieApp</title>
     <link rel="stylesheet" href="/styles/main.css">
 </head>
+<header th:replace="~{layout :: page_header}">
+
+
+</header>
 <body>
-<div layout:fragment="content">
-    <p th:if="${session.user == null}">
-        Please login</p>
-<div th:if="${session.user != null}">
-    <p>Hello, <span th:text="${session.user.name}">User</span></p>
-</div>
+<!--<div layout:fragment="content">-->
+<!-- Conditional messages -->
+<!-- <p th:if="${session.user == null}">Please login</p>
+ <div th:if="${session.user != null}">
+     <p>Hello, <span th:text="${session.user.name}">User</span></p>
+ </div>-->
 
-<p th:if="${session.user != null and session.user.role == 'ADMIN'}">
-    <a href="/users"><button>Go to Users</button></a>
-</p>
+<!-- Navigation buttons with proper conditional rendering -->
+<!-- <div class="button-group">
+     <a href="/movies" class="btn"><button>Go to Movies</button></a>
+-->
+<!-- Show login/register only when not logged in -->
+<!-- <th:block th:unless="${session.user}">
+     <a href="/login" class="btn"><button>Login</button></a>
+     <a href="/register" class="btn"><button>Register</button></a>
+ </th:block>
+</div>-->
 
-<hr>
+<!-- Admin-specific content -->
+<!--<div th:if="${session.user != null and session.user.role == 'ADMIN'}">
+    <hr>
+    <a href="/users" class="btn"><button>Go to Users</button></a>
+</div>-->
+<main>
+    <h1>Recommended Movie</h1>
+
+    <!-- Show the recommended movie -->
+    <div th:if="${randomMovie != null}" class="randomMovie">
+        <h2 th:text="${randomMovie.title}">Movie Title</h2>
+        <p><strong>Director:</strong> <span th:text="${randomMovie.director}">Director Name</span></p>
+        <p><strong>Release Year:</strong> <span th:text="${randomMovie.releaseYear}">Year</span></p>
+        <p><strong>Description:</strong> <span th:text="${randomMovie.description}">Description here</span></p>
+
+        <!-- Optional: Show an image if available -->
+        <div th:if="${randomMovie.imageUrl != null}">
+            <img th:src="${randomMovie.imageUrl}" alt="Movie Poster" style="max-width: 300px;">
+        </div>
+
+    </div>
+</main>
+
+
+
+<div>
 </div>
 </body>
+<footer th:replace="~{layout :: page_footer}">
+</footer>
 </html>
