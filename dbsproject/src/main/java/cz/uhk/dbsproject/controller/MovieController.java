@@ -43,19 +43,21 @@ public class MovieController {
 
     // Movie detail
     @GetMapping("/detail/{id}")
-    public String movieDetail(@PathVariable int id, HttpSession session, Model model) {
+    public String movieDetail(@PathVariable int id, HttpSession session, Model model, Rating rating) {
         MovieUser user = (MovieUser) session.getAttribute("user");
-
         Movie movie = movieService.getMovie(id);
+
         if (movie == null) return "redirect:/movies";
 
-        model.addAttribute("movie", movie);
-        model.addAttribute("user", session.getAttribute("user"));
-
+        // Check if user has recommended this movie
         boolean isRecommended = false;
-        if (session.getAttribute("user") == null) {
+        if (user != null) {
             isRecommended = recommendationService.isRecommendedByUser(user, movie);
         }
+
+        model.addAttribute("movie", movie);
+        model.addAttribute("user", user);
+        model.addAttribute("userRating", rating);
         model.addAttribute("userRecommended", isRecommended);
 
         return "movie-detail";
@@ -76,7 +78,7 @@ public class MovieController {
     public String addMovie(@RequestParam String title, @RequestParam(required = false) Integer genreId,
                            @RequestParam(required = false) String newGenre, @RequestParam String director,
                            @RequestParam int releaseYear, @RequestParam String description,
-                           @RequestParam(required = false) String imageUrl, HttpSession session) {
+                           @RequestParam(required = false) String imageUrl, HttpSession session, Model model) {
         if (session.getAttribute("user") == null) return "redirect:/login";
 
         Movie movie = new Movie();

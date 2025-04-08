@@ -3,6 +3,7 @@ package cz.uhk.dbsproject.controller;
 import cz.uhk.dbsproject.entity.MovieUser;
 import cz.uhk.dbsproject.repository.UserRepository;
 import cz.uhk.dbsproject.service.LogService;
+import cz.uhk.dbsproject.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,9 @@ public class AuthController {
 
     @Autowired
     private LogService logService;
+
+    @Autowired
+    private UserService userService;
 
     private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
@@ -45,7 +49,11 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public String register(@RequestParam String name, @RequestParam String email, @RequestParam String password) {
+    public String register(@RequestParam String name, @RequestParam String email, @RequestParam String password, Model model) {
+        if(userService.getUserByEmail(email) != null) {
+            model.addAttribute("error", "Email already exists");
+            return "register";
+        };
         MovieUser user = new MovieUser();
         user.setName(name);
         user.setEmail(email);
