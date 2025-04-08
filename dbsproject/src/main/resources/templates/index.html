@@ -9,26 +9,87 @@
 
 </header>
 <body>
-
+<div layout:fragment="content">
 <main>
     <h1>Recommended Movie</h1>
 
-    <!-- Show the recommended movie -->
-    <div th:if="${randomMovie != null}" class="randomMovie">
-        <h2 th:text="${randomMovie.title}">Movie Title</h2>
-        <p><strong>Director:</strong> <span th:text="${randomMovie.director}">Director Name</span></p>
-        <p><strong>Release Year:</strong> <span th:text="${randomMovie.releaseYear}">Year</span></p>
-        <p><strong>Description:</strong> <span th:text="${randomMovie.description}">Description here</span></p>
+    <!-- Show the recommended movies -->
+    <div class="recommended-movies">
+        <div class="movie-card" th:each="movie : ${recommendedMovies}">
+            <h2 th:text="${movie.title}">Movie Title</h2>
+            <p><strong>Director:</strong> <span th:text="${movie.director}"></span></p>
+            <p><strong>Year:</strong> <span th:text="${movie.releaseYear}"></span></p>
+            <p><strong>Description:</strong></p>
+            <p th:text="${movie.description}"></p>
 
-        <!-- Optional: Show an image if available -->
-        <div th:if="${randomMovie.imageUrl != null}">
-            <img th:src="${randomMovie.imageUrl}" alt="Movie Poster" style="max-width: 300px;">
+            <div th:if="${movie.imageUrl != null}">
+                <img th:src="@{'/images/uploads/' + ${movie.imageUrl}}" alt="Movie Poster" width="300">
+            </div>
+
+            <a th:href="@{/movies/detail/{id}(id=${movie.id})}" class="button">View Details</a>
         </div>
-
     </div>
+
+    <h1>Statistics Views</h1>
+
+    <!-- Best Rated Movies -->
+    <section>
+        <h2>Best Rated Movies</h2>
+        <table>
+            <tr>
+                <th>Movie ID</th>
+                <th>Title</th>
+                <th>Average Rating</th>
+                <th>Total Ratings</th>
+            </tr>
+            <tr th:each="movie : ${bestRated}">
+                <td th:text="${movie.movieId}"></td>
+                <td th:text="${movie.title}"></td>
+                <td th:text="${movie.avgRating}"></td>
+                <td th:text="${movie.totalRatings}"></td>
+            </tr>
+        </table>
+    </section>
+
+    <!-- Most Recommended Movies -->
+    <section style="margin-top: 30px;">
+        <h2>Most Recommended Movies</h2>
+        <table>
+            <tr>
+                <th>Movie ID</th>
+                <th>Title</th>
+                <th>Total Recommendations</th>
+            </tr>
+            <tr th:each="movie : ${mostRecommended}">
+                <td th:text="${movie.movieId}"></td>
+                <td th:text="${movie.title}"></td>
+                <td th:text="${movie.totalRecommendations}"></td>
+            </tr>
+        </table>
+    </section>
+
+    <!-- User Activity -->
+    <section style="margin-top: 30px;">
+        <h2>User Activity Summary</h2>
+        <table>
+            <tr>
+                <th>User ID</th>
+                <th>Name</th>
+                <th>Ratings</th>
+                <th>Recommendations</th>
+            </tr>
+            <tr th:each="user : ${userActivity}">
+                <td th:text="${user.userId}"></td>
+                <td th:text="${user.name}"></td>
+                <td th:text="${user.ratingCount}"></td>
+                <td th:text="${user.recommendationCount}"></td>
+            </tr>
+        </table>
+    </section>
 </main>
 
 <div>
+</div>
 </div>
 </body>
 <footer th:replace="~{layout :: page_footer}">

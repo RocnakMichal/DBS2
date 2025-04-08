@@ -1,12 +1,6 @@
 package cz.uhk.dbsproject.controller;
 
-import cz.uhk.dbsproject.entity.BestRatedMovieView;
-import cz.uhk.dbsproject.entity.MostRecommendedMovieView;
 import cz.uhk.dbsproject.entity.MovieUser;
-import cz.uhk.dbsproject.entity.UserActivitySummaryView;
-import cz.uhk.dbsproject.repository.BestRatedMovieViewRepository;
-import cz.uhk.dbsproject.repository.MostRecommendedMovieViewRepository;
-import cz.uhk.dbsproject.repository.UserActivitySummaryViewRepository;
 import cz.uhk.dbsproject.service.LogService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,18 +9,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.List;
-
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
 
-    @Autowired
-    private BestRatedMovieViewRepository movieRatingViewRepository;
-    @Autowired
-    private MostRecommendedMovieViewRepository recoMovieViewRepository;
-    @Autowired
-    private UserActivitySummaryViewRepository activityViewRepository;
     private final LogService logService;
 
     @Autowired
@@ -51,17 +37,5 @@ public class AdminController {
     private boolean isAdmin(HttpSession session) {
         MovieUser user = (MovieUser) session.getAttribute("user");
         return user != null && "ADMIN".equalsIgnoreCase(user.getRole());
-    }
-
-    @GetMapping("/views")
-    public String showViews(Model model) {
-        List<BestRatedMovieView> bestRated = movieRatingViewRepository.findAll();
-        List<MostRecommendedMovieView> mostRecommended = recoMovieViewRepository.findAll();
-        List<UserActivitySummaryView> userActivity = activityViewRepository.findAll();
-
-        model.addAttribute("bestRated", bestRated);
-        model.addAttribute("mostRecommended", mostRecommended);
-        model.addAttribute("userActivity", userActivity);
-        return "admin/views";
     }
 }

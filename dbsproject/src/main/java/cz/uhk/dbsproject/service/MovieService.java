@@ -29,6 +29,9 @@ public class MovieService {
     private LogService logService;
 
     @Autowired
+    private GroupMovieService groupMovieService;
+
+    @Autowired
     public MovieService(MovieRepository movieRepository, RatingRepository ratingRepository, StatisticsRepository statisticsRepository) {
         this.movieRepository = movieRepository;
         this.ratingRepository = ratingRepository;
@@ -73,6 +76,10 @@ public class MovieService {
     }
 
     public void deleteMovie(int id) {
+        Movie movie = movieRepository.findById(id).orElse(null);
+        if (movie == null) return;
+
+        groupMovieService.removeMovieFromAllGroups(movie);
         movieRepository.deleteById(id);
     }
 

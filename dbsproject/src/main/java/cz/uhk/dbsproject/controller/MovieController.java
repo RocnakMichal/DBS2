@@ -10,7 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 
 @Controller
@@ -75,10 +81,16 @@ public class MovieController {
 
     // Submit new movie
     @PostMapping("/add")
-    public String addMovie(@RequestParam String title, @RequestParam(required = false) Integer genreId,
-                           @RequestParam(required = false) String newGenre, @RequestParam String director,
-                           @RequestParam int releaseYear, @RequestParam String description,
-                           @RequestParam(required = false) String imageUrl, HttpSession session, Model model) {
+
+    public String addMovie(@RequestParam String title,
+                           @RequestParam(required = false) Integer genreId,
+                           @RequestParam(required = false) String newGenre,
+                           @RequestParam String director,
+                           @RequestParam int releaseYear,
+                           @RequestParam String description,
+                           @RequestParam("image") MultipartFile imageFile,
+                           HttpSession session) {
+
         if (session.getAttribute("user") == null) return "redirect:/login";
 
         Movie movie = new Movie();
@@ -86,15 +98,31 @@ public class MovieController {
         movie.setDirector(director);
         movie.setReleaseYear(releaseYear);
         movie.setDescription(description);
-        movie.setImageUrl(imageUrl);
+
+        if (imageFile != null && !imageFile.isEmpty()) {
+            try {
+                String uploadDir = "images/uploads/";
+                Path uploadPath = Paths.get(uploadDir);
+
+                if (!Files.exists(uploadPath)) {
+                    Files.createDirectories(uploadPath);
+                }
+
+                String filename = imageFile.getOriginalFilename();
+                Path filePath = uploadPath.resolve(filename);
+                Files.copy(imageFile.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+
+                movie.setImageUrl(filename);
+            } catch (IOException e) {
+                System.out.println(e);
+                e.printStackTrace();
+            }
+        }
 
         Genre genre = null;
-
         if (newGenre != null && !newGenre.isBlank()) {
-            // Check if genre with that name exists
             genre = genreService.findByName(newGenre.trim()).orElse(null);
             if (genre == null) {
-                // If not, create and save new genre
                 genre = new Genre();
                 genre.setName(newGenre.trim());
                 genre = genreService.save(genre);
@@ -102,7 +130,6 @@ public class MovieController {
         } else if (genreId != null) {
             genre = genreService.getGenreById(genreId);
         }
-
         movie.setGenre(genre);
 
         MovieUser user = (MovieUser) session.getAttribute("user");

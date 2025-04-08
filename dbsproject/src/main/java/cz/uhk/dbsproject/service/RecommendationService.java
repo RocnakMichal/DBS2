@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class RecommendationService {
@@ -52,5 +54,18 @@ public class RecommendationService {
 
     public boolean isRecommendedByUser(MovieUser user, Movie movie) {
         return recommendationRepository.findByRecommendedMovieAndMovieUser(movie, user).isPresent();
+    }
+
+    public Map<Movie, Long> getGroupRecommendationScores(List<MovieUser> users) {
+        List<Recommendation> recs = recommendationRepository.findByMovieUserIn(users);
+
+        return recs.stream()
+                .collect(Collectors.groupingBy(Recommendation::getRecommendedMovie, Collectors.mapping(
+                        Recommendation::getMovieUser, Collectors.collectingAndThen(Collectors.toSet(), set -> (long) set.size())
+                )));
+    }
+
+    public List<Recommendation> getByMovie(Movie movie) {
+        return recommendationRepository.findByRecommendedMovie(movie);
     }
 }
