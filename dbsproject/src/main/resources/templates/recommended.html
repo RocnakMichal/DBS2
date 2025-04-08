@@ -1,23 +1,35 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
 <head>
     <title>Recommended Movies</title>
     <link rel="stylesheet" href="/styles/main.css"/>
 </head>
+<header th:replace="~{layout :: page_header}">
+</header>
 <body>
-<h2>Recommended Movies (Placeholder)</h2>
+<div layout:fragment="content">
+    <h2>Recommended Movies (Placeholder)</h2>
 
-<table>
-    <tr>
-        <th>Title</th><th>Genre</th><th>Year</th>
-    </tr>
-    <tr th:each="movie : ${movies}">
-        <td th:text="${movie.title}"></td>
-        <td th:text="${movie.genre}"></td>
-        <td th:text="${movie.releaseYear}"></td>
-    </tr>
-</table>
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Genre</th>
+            <th>Year</th>
+        </tr>
+        <tr th:each="movie : ${movies}">
+            <td th:text="${movie.title}"></td>
+            <td th:text="${movie.genre}"></td>
+            <td th:text="${movie.releaseYear}"></td>
+        </tr>
+    </table>
 
-<a href="/movies"><button>Back</button></a>
+    <a href="/movies">
+        <button>Back</button>
+    </a>
+</div>
 </body>
+<footer th:replace="~{layout :: page_footer}">
+</footer>
 </html>

@@ -1,16 +1,27 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
 <head>
     <title>Admin Panel</title>
+    <link rel="stylesheet" href="/styles/main.css">
 </head>
+<header th:replace="~{layout :: page_header}">
+</header>
+
 <body>
-<h2>Admin Panel</h2>
-<ul>
-    <li><a href="/admin/logs">View Logs</a></li>
-    <li><a href="/users">Manage Users</a></li>
-    <li><a href="/movies">Manage Movies</a></li>
-    <li><a href="/admin/views">Views</a></li>
-</ul>
-<a href="/">Back to Home</a>
+  
+<div layout:fragment="content">
+    <h2>Admin Panel</h2>
+    <ul>
+        <li><a href="/admin/logs">View Logs</a></li>
+        <li><a href="/users">Manage Users</a></li>
+        <li><a href="/movies">Manage Movies</a></li>
+    </ul>
+    <a href="/">Back to Home</a>
+</div>
+
 </body>
+<footer th:replace="~{layout :: page_footer}">
+</footer>
 </html>
