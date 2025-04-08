@@ -44,13 +44,20 @@ public class MovieController {
     // Movie detail
     @GetMapping("/detail/{id}")
     public String movieDetail(@PathVariable int id, HttpSession session, Model model) {
-        //if (session.getAttribute("user") == null) return "redirect:/login";
+        MovieUser user = (MovieUser) session.getAttribute("user");
 
         Movie movie = movieService.getMovie(id);
         if (movie == null) return "redirect:/movies";
 
         model.addAttribute("movie", movie);
         model.addAttribute("user", session.getAttribute("user"));
+
+        boolean isRecommended = false;
+        if (session.getAttribute("user") == null) {
+            isRecommended = recommendationService.isRecommendedByUser(user, movie);
+        }
+        model.addAttribute("userRecommended", isRecommended);
+
         return "movie-detail";
     }
 

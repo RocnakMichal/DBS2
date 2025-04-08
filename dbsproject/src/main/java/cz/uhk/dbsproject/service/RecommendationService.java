@@ -49,4 +49,8 @@ public class RecommendationService {
 
         statisticsService.updateStats(movie);
     }
+
+    public boolean isRecommendedByUser(MovieUser user, Movie movie) {
+        return recommendationRepository.findByRecommendedMovieAndMovieUser(movie, user).isPresent();
+    }
 }

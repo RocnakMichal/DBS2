@@ -55,11 +55,12 @@
            th:href="@{/movies/{id}/delete-rating(id=${movie.id})}"
            class="button delete-button">Delete My Rating</a>
 
-        <a th:href="@{/movies/recommend/{id}(id=${movie.id})}"
-           th:text="${userRecommended} ? 'Remove Recommendation' : 'Recommend this Movie'"
-           class="button"></a>
+        <form th:action="@{/movies/recommend/{id}(id=${movie.id})}" method="post" class="inline-form">
+            <button type="submit" class="button"
+                    th:text="${userRecommended} ? 'Remove Recommendation' : 'Recommend this Movie'"></button>
+        </form>
 
-        <a th:if="${user.role == 'ADMIN'}"
+        <a th:if="${user != null and user.role == 'ADMIN'}"
            th:href="@{/movies/delete/{id}(id=${movie.id})}"
            class="button delete-button">Delete Movie</a>
 

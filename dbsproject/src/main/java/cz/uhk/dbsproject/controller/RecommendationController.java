@@ -48,7 +48,7 @@ public class RecommendationController {
         Movie movie = movieService.getMovieById(id);
         recommendationService.recommendMovie(user, movie);
         statisticsService.incrementRecommendations(movie);
-        logService.log(user, "💡 Recommended movie: " + movie.getTitle());
+        logService.log(user, "Recommended movie: " + movie.getTitle());
 
         return "redirect:/movies/detail/" + id;
     }

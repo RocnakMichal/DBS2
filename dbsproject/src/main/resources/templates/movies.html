@@ -43,7 +43,8 @@
                 <a th:href="@{/movies/detail/{id}(id=${movie.id})}">
                     <button>Details</button>
                 </a>
-                <a th:if="${session.user.role == 'ADMIN'}" th:href="@{/movies/delete/{id}(id=${movie.id})}">
+                <a th:if="${session.user != null and session.user.role == 'ADMIN'}"
+                   th:href="@{/movies/delete/{id}(id=${movie.id})}">
                     <button class="delete-button">Delete</button>
                 </a>
             </td>
