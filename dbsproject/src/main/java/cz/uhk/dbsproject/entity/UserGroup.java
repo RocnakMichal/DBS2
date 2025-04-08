@@ -23,6 +23,9 @@ public class UserGroup {
     private List<GroupMember> groupMembers = new ArrayList<>();
     @OneToMany(mappedBy = "group", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<GroupMovie> groupMovies = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "suggested_movie_id")
+    private Movie suggestedMovie;
 
     public UserGroup() {
     }
@@ -85,5 +88,13 @@ public class UserGroup {
 
     public void setGroupMovies(List<GroupMovie> groupMovies) {
         this.groupMovies = groupMovies;
+    }
+
+    public Movie getSuggestedMovie() {
+        return suggestedMovie;
+    }
+
+    public void setSuggestedMovie(Movie suggestedMovie) {
+        this.suggestedMovie = suggestedMovie;
     }
 }

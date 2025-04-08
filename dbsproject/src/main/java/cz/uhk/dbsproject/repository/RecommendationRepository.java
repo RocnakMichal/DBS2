@@ -12,4 +12,5 @@ public interface RecommendationRepository extends JpaRepository<Recommendation, 
     Optional<Recommendation> findByRecommendedMovieAndMovieUser(Movie movie, MovieUser user);
     List<Recommendation> findByMovieUser(MovieUser user);
     List<Recommendation> findByRecommendedMovie(Movie movie);
+    List<Recommendation> findByMovieUserIn(List<MovieUser> users);
 }

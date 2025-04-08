@@ -74,4 +74,10 @@ public class GroupService {
     public void save(UserGroup group) {
         groupRepository.save(group);
     }
+
+    public List<MovieUser> getUsersInGroup(UserGroup group) {
+        return group.getGroupMembers().stream()
+                .map(GroupMember::getUser)
+                .toList();
+    }
 }

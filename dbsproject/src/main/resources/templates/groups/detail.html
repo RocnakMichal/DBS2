@@ -50,9 +50,51 @@
             <button type="submit">Leave Group</button>
         </form>
 
+        <div th:if="${group.suggestedMovie == null}" class="section">
+            <form th:action="@{/groups/{id}/suggest(id=${group.id})}" method="get">
+                <button type="submit" class="button">Suggest a Movie</button>
+            </form>
+        </div>
+
+        <div th:if="${group.suggestedMovie != null}" class="card mt-2">
+            <h3>Suggested Movie to Watch</h3>
+            <p><strong>Title:</strong> <span th:text="${group.suggestedMovie.title}"></span></p>
+            <p><strong>Director:</strong> <span th:text="${group.suggestedMovie.director}"></span></p>
+            <p><strong>Description:</strong> <span th:text="${group.suggestedMovie.description}"></span></p>
+
+            <div th:if="${group.suggestedMovie.imageUrl != null}">
+                <img th:src="@{'/images/uploads/' + ${group.suggestedMovie.imageUrl}}" alt="Movie Poster" width="300">
+            </div>
+
+            <div class="group-meta mt-2" style="font-size: 0.9rem; color: #555;">
+                <p>
+                    <strong>Recommended by:</strong>
+                    <span th:if="${#lists.isEmpty(suggestionRecommenders)}">No one</span>
+                    <span th:if="${!#lists.isEmpty(suggestionRecommenders)}"
+                          th:text="${#strings.listJoin(suggestionRecommenders, ', ')}">User Names</span>
+                </p>
+                <p th:if="${!#lists.isEmpty(suggestionRecommenders)}">
+                    <small th:text="${suggestionRecommenders.size()} + ' user(s) recommended this'"></small>
+                </p>
+            </div>
+
+            <form th:action="@{/groups/{id}/reroll(id=${group.id})}" method="post">
+                <button class="button">Reroll</button>
+            </form>
+        </div>
+
         <h3>Group Movies</h3>
         <ul>
-            <li th:each="gm : ${group.groupMovies}" th:text="${gm.movie.title}">Movie</li>
+            <p th:if="${error}" th:text="${error}" class="error"></p>
+            <li th:each="gm : ${group.groupMovies}">
+                <span th:text="${gm.movie.title}">Movie</span>
+
+                <form th:action="@{/groups/{groupId}/remove-movie(groupId=${group.id})}" method="post"
+                      style="display:inline;">
+                    <input type="hidden" name="movieId" th:value="${gm.movie.id}"/>
+                    <button type="submit" class="button delete-button">Remove</button>
+                </form>
+            </li>
         </ul>
 
         <h4>Add Movie</h4>

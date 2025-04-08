@@ -15,7 +15,6 @@ public class Movie {
     private String title;
     private String director;
     private int releaseYear;
-    @Lob
     private String description;
     private String imageUrl;
     private LocalDateTime createdAt;
