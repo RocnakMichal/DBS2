@@ -1,9 +1,6 @@
 package cz.uhk.dbsproject.controller;
 
-import cz.uhk.dbsproject.entity.Genre;
-import cz.uhk.dbsproject.entity.Movie;
-import cz.uhk.dbsproject.entity.MovieUser;
-import cz.uhk.dbsproject.entity.Rating;
+import cz.uhk.dbsproject.entity.*;
 import cz.uhk.dbsproject.repository.MovieRepository;
 import cz.uhk.dbsproject.service.GenreService;
 import cz.uhk.dbsproject.service.MovieService;

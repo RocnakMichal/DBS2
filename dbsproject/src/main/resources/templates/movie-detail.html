@@ -6,88 +6,67 @@
     <title>Movie Detail</title>
     <link rel="stylesheet" href="/styles/main.css"/>
 </head>
-<header th:replace="~{layout :: page_header}">
-</header>
-<body>
 
-<div layout:fragment="content">
+<header th:replace="~{layout :: page_header}"></header>
+
+<body>
+<div layout:fragment="content" class="card">
     <h2 th:text="${movie.title}">Movie Title</h2>
+
     <p><strong>Genre:</strong> <span th:text="${movie.genre.getName()}"></span></p>
     <p><strong>Director:</strong> <span th:text="${movie.director}"></span></p>
     <p><strong>Year:</strong> <span th:text="${movie.releaseYear}"></span></p>
-    <p><strong>Description:</strong> <span th:text="${movie.description}"></span></p>
+    <p><strong>Description:</strong></p>
+    <p th:text="${movie.description}">Movie description here...</p>
 
+    <div class="group-item">
+        <h3>Statistics</h3>
+        <div th:if="${movie.statistics != null}">
+            <ul>
+                <li><strong>Average Rating:</strong> <span th:text="${movie.statistics.avgRating}"></span></li>
+                <li><strong>Total Ratings:</strong> <span th:text="${movie.statistics.totalRatings}"></span></li>
+                <li><strong>Recommendations:</strong> <span th:text="${movie.statistics.totalRecommendations}"></span></li>
+            </ul>
+        </div>
+        <p th:if="${movie.statistics == null}" class="error">No statistics available for this movie yet.</p>
+    </div>
 
-    <h3>Statistics</h3>
-    <div th:if="${movie.statistics != null}">
+    <div class="group-item">
+        <h3>Ratings</h3>
         <ul>
-            <li th:text="'Average Rating: ' + ${movie.statistics.avgRating}"></li>
-            <li th:text="'Total Ratings: ' + ${movie.statistics.totalRatings}"></li>
-            <li th:text="'Recommendations: ' + ${movie.statistics.totalRecommendations}"></li>
+            <li th:each="rating : ${movie.ratings}">
+                <span th:text="${rating.value}"></span>/5 –
+                <em th:text="${rating.comment}">Nice movie!</em>
+                <small>&mdash; <span th:text="${rating.movieUser.name}"></span></small>
+            </li>
         </ul>
     </div>
 
-    <div th:if="${movie.statistics == null}">
-        <p>No statistics available for this movie yet.</p>
+    <div class="group-item" th:if="${userRating != null}">
+        <h4>Your Rating</h4>
+        <p><strong>Rating:</strong> <span th:text="${userRating.value}"></span>/5</p>
+        <p><strong>Comment:</strong> <span th:text="${userRating.comment}"></span></p>
     </div>
 
-    <h3>Ratings</h3>
-    <ul>
-        <li th:each="rating : ${movie.ratings}">
-            <span th:text="${rating.value}"></span>/5
-            - <span th:text="${rating.comment}"></span>
-            by <span th:text="${rating.user.name}"></span>
-        </li>
-    </ul>
+    <div class="section button-group">
+        <a th:href="@{/movies/rate/{id}(id=${movie.id})}" class="button">Rate This Movie</a>
 
-    <a th:href="@{/movies/rate/{id}(id=${movie.id})}">
-        <button>Rate This Movie</button>
-    </a>
-    <a href="/movies">
-        <button>Back</button>
-    </a>
+        <a th:if="${userRating != null}"
+           th:href="@{/movies/{id}/delete-rating(id=${movie.id})}"
+           class="button delete-button">Delete My Rating</a>
+
+        <a th:href="@{/movies/recommend/{id}(id=${movie.id})}"
+           th:text="${userRecommended} ? 'Remove Recommendation' : 'Recommend this Movie'"
+           class="button"></a>
+
+        <a th:if="${user.role == 'ADMIN'}"
+           th:href="@{/movies/delete/{id}(id=${movie.id})}"
+           class="button delete-button">Delete Movie</a>
+
+        <a href="/movies" class="button">Back</a>
+    </div>
 </div>
-
-// need to look at it
-<h3>Ratings</h3>
-<ul>
-    <li th:each="rating : ${movie.ratings}">
-        <span th:text="${rating.value}"></span>/5
-        - <span th:text="${rating.comment}"></span>
-        by <span th:text="${rating.movieUser.name}"></span>
-    </li>
-</ul>
-
-<div th:if="${userRating != null}">
-    <form th:action="@{/movies/{id}/delete-rating(id=${movie.id})}" method="post">
-        <p>Your rating: <b th:text="${userRating.value}"></b></p>
-        <p>Comment: <span th:text="${userRating.comment}"></span></p>
-        <button type="submit">Delete Rating</button>
-    </form>
-</div>
-
-<div th:unless="${userRating != null}">
-    <a th:href="@{/movies/rate/{id}(id=${movie.id})}">Rate this movie</a>
-
-    <form th:action="@{/movies/{id}/delete-rating(id=${movie.id})}" method="post">
-        <button type="submit">Delete My Rating</button>
-    </form>
-</div>
-
-<form th:action="@{/movies/recommend/{id}(id=${movie.id})}" method="post">
-    <button type="submit"
-            th:text="${userRecommended} ? 'Remove Recommendation' : 'Recommend this Movie'"></button>
-</form>
-
-<div th:if="${user.role == 'ADMIN'}">
-    <form th:action="@{/movies/delete/{id}(id=${movie.id})}" method="get">
-        <button type="submit" style="color: red;">Delete Movie</button>
-    </form>
-</div>
-
-<a href="/movies"><button>Back</button></a>
-
 </body>
-<footer th:replace="~{layout :: page_footer}">
-</footer>
+
+<footer th:replace="~{layout :: page_footer}"></footer>
 </html>

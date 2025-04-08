@@ -10,9 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-
-
-
 @Controller
 public class AuthController {
 
@@ -24,7 +21,6 @@ public class AuthController {
 
     private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-
     @GetMapping("/login")
     public String loginForm() {
         return "login";
@@ -33,9 +29,7 @@ public class AuthController {
     @PostMapping("/login")
     public String login(@RequestParam String email, @RequestParam String password, HttpSession session, Model model) {
         MovieUser user = userRepository.findByEmail(email);
-        System.out.println(user.getPasswordHash());
-        if (user != null && passwordEncoder.matches(password, user.getPasswordHash()))
-        {
+        if (user != null && passwordEncoder.matches(password, user.getPasswordHash())) {
             session.setAttribute("user", user);
             logService.log(user, "User logged in");
             return "redirect:/movies";

@@ -7,32 +7,9 @@
 </head>
 <header th:replace="~{layout :: page_header}">
 
-
 </header>
 <body>
-<!--<div layout:fragment="content">-->
-<!-- Conditional messages -->
-<!-- <p th:if="${session.user == null}">Please login</p>
- <div th:if="${session.user != null}">
-     <p>Hello, <span th:text="${session.user.name}">User</span></p>
- </div>-->
 
-<!-- Navigation buttons with proper conditional rendering -->
-<!-- <div class="button-group">
-     <a href="/movies" class="btn"><button>Go to Movies</button></a>
--->
-<!-- Show login/register only when not logged in -->
-<!-- <th:block th:unless="${session.user}">
-     <a href="/login" class="btn"><button>Login</button></a>
-     <a href="/register" class="btn"><button>Register</button></a>
- </th:block>
-</div>-->
-
-<!-- Admin-specific content -->
-<!--<div th:if="${session.user != null and session.user.role == 'ADMIN'}">
-    <hr>
-    <a href="/users" class="btn"><button>Go to Users</button></a>
-</div>-->
 <main>
     <h1>Recommended Movie</h1>
 
@@ -50,8 +27,6 @@
 
     </div>
 </main>
-
-
 
 <div>
 </div>
