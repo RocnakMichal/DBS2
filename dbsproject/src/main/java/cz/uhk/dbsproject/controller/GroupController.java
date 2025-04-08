@@ -59,6 +59,30 @@ public class GroupController {
 
         if (isMember) {
             model.addAttribute("allMovies", movieService.getAllMovies());
+
+            Movie currentSuggestion = group.getSuggestedMovie();
+            List<MovieUser> users = groupService.getUsersInGroup(group);
+
+            boolean isSuggestionValid = false;
+
+            if (currentSuggestion != null) {
+                isSuggestionValid = recommendationService.getByMovie(currentSuggestion).stream()
+                        .anyMatch(r -> users.contains(r.getMovieUser()));
+            }
+
+            if (!isSuggestionValid && session.getAttribute("suggestion-scores") != null) {
+                rerollMovieSuggestion(id, session, model);
+            }
+
+            if (currentSuggestion != null) {
+                List<String> recommenderNames = recommendationService.getByMovie(currentSuggestion).stream()
+                        .filter(r -> users.contains(r.getMovieUser()))
+                        .map(r -> r.getMovieUser().getName())
+                        .distinct()
+                        .toList();
+
+                model.addAttribute("suggestionRecommenders", recommenderNames);
+            }
         }
 
         return "groups/detail";
