@@ -12,7 +12,7 @@
 <div layout:fragment="content">
     <h2>Add Movie</h2>
 
-    <form action="/movies/add" method="post" th:object="${movie}">
+    <form action="/movies/add" method="post" th:object="${movie}" enctype="multipart/form-data">
         <label>Title:</label>
         <input th:field="*{title}" required/><br>
 
@@ -34,8 +34,8 @@
         <label>Description:</label><br>
         <textarea th:field="*{description}"></textarea><br>
 
-        <label>Image URL:</label><br>
-        <input th:field="*{imageUrl}"/><br>
+        <label>Image:</label><br>
+        <input type="file" name="image" accept="image/*" />
 
         <button type="submit">Add Movie</button>
     </form>

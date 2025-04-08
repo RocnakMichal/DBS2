@@ -23,7 +23,7 @@
             <p th:text="${movie.description}"></p>
 
             <div th:if="${movie.imageUrl != null}">
-                <img th:src="${movie.imageUrl}" alt="Movie Poster">
+                <img th:src="@{'/images/uploads/' + ${movie.imageUrl}}" alt="Movie Poster" width="300">
             </div>
 
             <a th:href="@{/movies/detail/{id}(id=${movie.id})}" class="button">View Details</a>
