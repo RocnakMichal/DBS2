@@ -55,4 +55,12 @@ public class UserService {
         userRepository.deleteById(id);
         return true;
     }
+
+    public void promoteToAdmin(int id) {
+        MovieUser user = getUser(id);
+        if (user != null && !"ADMIN".equalsIgnoreCase(user.getRole())) {
+            user.setRole("ADMIN");
+            userRepository.save(user);
+        }
+    }
 }

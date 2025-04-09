@@ -30,6 +30,9 @@
             <td th:text="${user.name}"></td>
             <td th:text="${user.email}"></td>
             <td th:if="${session.user.role == 'ADMIN'}">
+                <form th:action="@{/admin/promote/{id}(id=${user.id})}" method="post" style="display:inline;">
+                    <button type="submit" th:if="${user.role != 'ADMIN'}">Promote to Admin</button>
+                </form>
                 <form th:action="@{/users/delete/{id}(id=${user.id})}" method="post">
                     <input type="hidden" name="_method" value="delete"/>
                     <button type="submit" class="delete-button">Delete</button>

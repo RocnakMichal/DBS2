@@ -2,11 +2,14 @@ package cz.uhk.dbsproject.controller;
 
 import cz.uhk.dbsproject.entity.MovieUser;
 import cz.uhk.dbsproject.service.LogService;
+import cz.uhk.dbsproject.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -14,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AdminController {
 
     private final LogService logService;
+    @Autowired
+    private UserService userService;
 
     @Autowired
     public AdminController(LogService logService) {
@@ -37,5 +42,13 @@ public class AdminController {
     private boolean isAdmin(HttpSession session) {
         MovieUser user = (MovieUser) session.getAttribute("user");
         return user != null && "ADMIN".equalsIgnoreCase(user.getRole());
+    }
+
+    @PostMapping("/promote/{id}")
+    public String promoteUser(@PathVariable int id, HttpSession session) {
+        if (!isAdmin(session)) return "redirect:/";
+
+        userService.promoteToAdmin(id);
+        return "redirect:/users";
     }
 }
