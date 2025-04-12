@@ -36,6 +36,9 @@
             <th>Action</th>
         </tr>
         <tr th:each="movie : ${movies}">
+            <td>
+                <img th:src="@{${movie.imageUrl}}" alt="Movie Image" width="100"/>
+            </td>
             <td th:text="${movie.title}">Title</td>
             <td th:text="${movie.genre.name}">Genre</td>
             <td th:text="${movie.releaseYear}">Year</td>
@@ -47,9 +50,6 @@
                    th:href="@{/movies/delete/{id}(id=${movie.id})}">
                     <button class="delete-button">Delete</button>
                 </a>
-            </td>
-            <td>
-                <img th:src="@{${movie.imageUrl}}" alt="Movie Image" width="100"/>
             </td>
         </tr>
     </table>
