@@ -51,4 +51,12 @@ public class AdminController {
         userService.promoteToAdmin(id);
         return "redirect:/users";
     }
+
+
+    @PostMapping("/demote/{id}")
+    public String demoteAdmin(@PathVariable int id) {
+        userService.demoteAdmin(id);
+        return "redirect:/users";
+    }
+
 }

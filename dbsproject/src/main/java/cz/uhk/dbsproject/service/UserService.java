@@ -63,4 +63,12 @@ public class UserService {
             userRepository.save(user);
         }
     }
+
+    public void demoteAdmin(int id){
+        MovieUser user=getUser(id);
+        if (user !=null && "ADMIN".equalsIgnoreCase(user.getRole())){
+            user.setRole("USER");
+            userRepository.save(user);
+        }
+    }
 }
