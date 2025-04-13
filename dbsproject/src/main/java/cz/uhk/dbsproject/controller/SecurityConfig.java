@@ -14,7 +14,7 @@ public class SecurityConfig {
         http
                 // CSRF Configuration
                 .csrf(csrf -> csrf
-                        .ignoringRequestMatchers("/login", "/register", "/logout", "groups/create", "movies/add", "users/add") // Disable CSRF for specified endpoints
+                        .ignoringRequestMatchers("/login", "/register", "/logout", "groups/create", "movies/add", "users/add", "profile/edit","movie/edit", "/change-password","/movies/edit") // Disable CSRF for specified endpoints
                 );
         return http.build();
     }
