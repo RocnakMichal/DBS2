@@ -105,6 +105,14 @@ button:hover, .button:hover {
     background-color: #c0392b;
 }
 
+.action-form{
+    background-color: transparent;
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: none;
+    margin-bottom: 2rem;
+}
+
 form {
     background-color: white;
     padding: 1.5rem;

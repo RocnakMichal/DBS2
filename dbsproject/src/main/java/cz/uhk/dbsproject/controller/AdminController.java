@@ -45,10 +45,22 @@ public class AdminController {
     }
 
     @PostMapping("/promote/{id}")
-    public String promoteUser(@PathVariable int id, HttpSession session) {
-        if (!isAdmin(session)) return "redirect:/";
+    public String toggleUserRole(@PathVariable int id, HttpSession session) {
+        // Check if current user is admin
+        if (!isAdmin(session)) {
+            return "redirect:/";
+        }
 
-        userService.promoteToAdmin(id);
+        // Get the user to modify
+        MovieUser user = userService.getUser(id);
+
+        // Toggle role between ADMIN and USER
+        if (user.getRole().equals("ADMIN")) {
+            userService.demoteToUser(id);  // Or implement this logic
+        } else {
+            userService.promoteToAdmin(id);
+        }
+
         return "redirect:/users";
     }
 

@@ -63,7 +63,7 @@
             <p><strong>Description:</strong> <span th:text="${group.suggestedMovie.description}"></span></p>
 
             <div th:if="${group.suggestedMovie.imageUrl != null}">
-                <img th:src="@{'/images/uploads/' + ${group.suggestedMovie.imageUrl}}" alt="Movie Poster" width="300">
+                <img th:src="@{${group.suggestedMovie.imageUrl}}" alt="Movie Poster" width="300">
             </div>
 
             <div class="group-meta mt-2" style="font-size: 0.9rem; color: #555;">

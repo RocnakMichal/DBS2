@@ -125,7 +125,7 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public String register(@RequestParam String name, @RequestParam String email, @RequestParam String password, Model model) {
+    public String register(@RequestParam String name, @RequestParam String email, @RequestParam String password, Model model, HttpSession session) {
         if(userService.getUserByEmail(email) != null) {
             model.addAttribute("error", "Email already exists");
             return "register";
@@ -137,7 +137,9 @@ public class AuthController {
         user.setRole("USER");
         userRepository.save(user);
         logService.log(user, "User Registered");
-        return "redirect:/login";
+        session.setAttribute("user", user);
+        logService.log(user, "User logged in");
+        return "redirect:/";
     }
 
     @GetMapping("/logout")

@@ -30,12 +30,16 @@
 
     <table id="moviesTable">
         <tr>
+            <th>Caption</th>
             <th>Title</th>
             <th>Genre</th>
             <th>Year</th>
             <th>Action</th>
         </tr>
         <tr th:each="movie : ${movies}">
+            <td>
+                <img th:src="@{${movie.imageUrl}}" alt="Movie Image" width="100"/>
+            </td>
             <td th:text="${movie.title}">Title</td>
             <td th:text="${movie.genre.name}">Genre</td>
             <td th:text="${movie.releaseYear}">Year</td>

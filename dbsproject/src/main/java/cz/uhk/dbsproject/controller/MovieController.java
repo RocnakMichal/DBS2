@@ -112,7 +112,7 @@ public class MovieController {
                 Path filePath = uploadPath.resolve(filename);
                 Files.copy(imageFile.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
 
-                movie.setImageUrl(filename);
+                movie.setImageUrl("/images/uploads/" + filename);
             } catch (IOException e) {
                 System.out.println(e);
                 e.printStackTrace();
