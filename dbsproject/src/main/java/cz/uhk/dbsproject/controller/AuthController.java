@@ -43,6 +43,82 @@ public class AuthController {
         }
     }
 
+    @GetMapping("/profile")
+    public String userProfile(HttpSession session, Model model) {
+        MovieUser user = (MovieUser) session.getAttribute("user");
+        if (user == null) {
+            return "redirect:/login";
+        }
+        model.addAttribute("user", user);
+        return "profile";
+    }
+
+    @GetMapping("/change-password")
+    public String changePasswordForm(HttpSession session, Model model) {
+        MovieUser user = (MovieUser) session.getAttribute("user");
+        if (user == null) {
+            return "redirect:/login";
+        }
+        return "change-password";
+    }
+
+    @PostMapping("/change-password")
+    public String changePassword(@RequestParam String currentPassword, @RequestParam String newPassword, @RequestParam String confirmNewPassword, HttpSession session, Model model) {
+        MovieUser user = (MovieUser) session.getAttribute("user");
+        if (user == null) {
+            return "redirect:/login";
+        }
+
+        if (!passwordEncoder.matches(currentPassword, user.getPasswordHash())) {
+            model.addAttribute("error", "Current password is incorrect");
+            return "change-password";
+        }
+
+        if (!newPassword.equals(confirmNewPassword)) {
+            model.addAttribute("error", "Passwords do not match");
+            return "change-password";
+        }
+
+        if(passwordEncoder.matches(newPassword, user.getPasswordHash())) {
+            model.addAttribute("error", "New password cannot be the same as the current password");
+            return "change-password";
+        }
+
+        user.setPasswordHash(passwordEncoder.encode(newPassword));
+        userRepository.save(user);
+        logService.log(user, "Password changed successfully");
+        model.addAttribute("success", "Password changed successfully");
+        return "change-password";
+    }
+
+
+    @GetMapping("/profile/edit")
+    public String editProfileForm(HttpSession session, Model model) {
+        MovieUser user = (MovieUser) session.getAttribute("user");
+        if (user == null) {
+            return "redirect:/login";
+        }
+        model.addAttribute("user", user);
+        return "profile-edit";
+    }
+
+    @PostMapping("/profile/edit")
+    public String editProfile(@RequestParam String name, @RequestParam String email, HttpSession session, Model model) {
+        MovieUser user = (MovieUser) session.getAttribute("user");
+        if (user == null) {
+            return "redirect:/login";
+        }
+
+        // Update user details
+        user.setName(name);
+        user.setEmail(email);
+        userRepository.save(user);
+        logService.log(user, "User profile updated");
+
+        model.addAttribute("success", "Profile updated successfully");
+        return "redirect:/profile";
+    }
+
     @GetMapping("/register")
     public String registerForm() {
         return "register";

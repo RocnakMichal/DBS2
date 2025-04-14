@@ -26,7 +26,8 @@ public class Movie {
     private List<Rating> ratings = new ArrayList<>();
     @OneToOne(mappedBy = "movie", cascade = CascadeType.ALL, orphanRemoval = true)
     private Statistics statistics;
-    @OneToMany(mappedBy = "recommendedMovie", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "recommendedMovie", cascade = CascadeType.ALL, fetch = FetchType.LAZY
+            ,orphanRemoval = true)
     private List<Recommendation> recommendations = new ArrayList<>();
 
     public Movie() {

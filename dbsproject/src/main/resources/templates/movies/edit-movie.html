@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Edit Movie</title>
+    <link rel="stylesheet" href="/styles/main.css"/>
+</head>
+<header th:replace="~{layout :: page_header}">
+</header>
+<body>
+<div layout:fragment="content">
+    <h2>Edit Movie</h2>
+    <form th:action="@{/movies/edit/{id}(id=${movie.id})}" method="post" enctype="multipart/form-data">
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" th:value="${movie.title}" required/>
+
+        <label for="genre">Genre:</label>
+        <select id="genre" name="genreId" th:value="${movie.genre.id}">
+            <option th:each="genre : ${genres}" th:value="${genre.id}" th:text="${genre.name}"></option>
+        </select>
+
+        <label for="director">Director:</label>
+        <input type="text" id="director" name="director" th:value="${movie.director}" required/>
+
+        <label for="releaseYear">Release Year:</label>
+        <input type="number" id="releaseYear" name="releaseYear" th:value="${movie.releaseYear}" required/>
+
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" required th:text="${movie.description}"></textarea>
+
+        <label for="image">Replace Image:</label>
+        <input type="file" id="image" name="image"/>
+
+        <button type="submit">Save Changes</button>
+        <a th:href="@{/templates/movies}" class="button">Cancel</a>
+    </form>
+</div>
+>
+</body>
+<footer th:replace="~{layout :: page_footer}">
+</footer>
+</html>
