@@ -63,14 +63,18 @@ public class MovieService {
     public void saveMovie(Movie movie, MovieUser user) {
         movie.setCreatedAt(LocalDateTime.now());
         Movie savedMovie = movieRepository.save(movie);
+        Optional<Statistics> existingStats = statisticsRepository.findByMovie(savedMovie);
 
-        Statistics stats = new Statistics();
+        if (existingStats.isEmpty()) {
+
+            Statistics stats = new Statistics();
         stats.setMovie(savedMovie);
         stats.setCreatedAt(LocalDateTime.now());
         stats.setAvgRating(0);
         stats.setTotalRatings(0);
         stats.setTotalRecommendations(0);
         statisticsRepository.save(stats);
+        }
 
         logService.log(user, "Added movie: " + movie.getTitle());
     }

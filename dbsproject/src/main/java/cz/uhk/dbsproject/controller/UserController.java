@@ -55,6 +55,40 @@ public class UserController {
         return userService.updateUser(id, updatedMovieUser);
     }
 
+
+    @GetMapping("/edit")
+    public String editUserForm(HttpSession session, Model model) {
+        MovieUser loggedInUser = (MovieUser) session.getAttribute("user");
+
+        if (loggedInUser == null) {
+            return "redirect:/login";
+        }
+
+        model.addAttribute("user", loggedInUser);
+        return "profile-edit";
+    }
+
+    @PostMapping("/edit")
+    public String editUser(@RequestParam String name, @RequestParam String email, HttpSession session, Model model) {
+        MovieUser loggedInUser = (MovieUser) session.getAttribute("user");
+
+        if (loggedInUser == null) {
+            return "redirect:/login";
+        }
+
+        // Update user details
+        loggedInUser.setName(name);
+        loggedInUser.setEmail(email);
+        userService.updateUser(loggedInUser.getId(), loggedInUser);
+
+        model.addAttribute("success", "Profile updated successfully");
+        return "redirect:/profile";
+    }
+
+
+
+
+
     @PostMapping("/delete/{id}")
     public String deleteUser(@PathVariable int id) {
         userService.deleteUser(id);

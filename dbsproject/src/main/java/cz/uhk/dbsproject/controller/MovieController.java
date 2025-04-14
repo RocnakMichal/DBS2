@@ -204,4 +204,70 @@ public class MovieController {
 
         return "redirect:/movies/detail/" + id;
     }
+
+
+    @GetMapping("/edit/{id}")
+    public String showEditMovieForm(@PathVariable int id, Model model, HttpSession session) {
+        Movie movie = movieService.getMovie(id);
+        if (movie == null) {
+            return "redirect:/movies";
+        }
+
+        List<Genre> genres = genreService.getAllGenres();
+        model.addAttribute("movie", movie);
+        model.addAttribute("genres", genres);
+        return "movies/edit-movie";
+    }
+
+
+    @PostMapping("/edit/{id}")
+    public String updateMovie(@PathVariable int id,
+                              @RequestParam String title,
+                              @RequestParam(required = false) Integer genreId,
+                              @RequestParam String director,
+                              @RequestParam int releaseYear,
+                              @RequestParam String description,
+                              @RequestParam("image") MultipartFile imageFile,
+                              HttpSession session) {
+        Movie movie = movieService.getMovie(id);
+        if (movie == null) {
+            return "redirect:/movies"; // Handle invalid movie ID gracefully
+        }
+
+        // Update movie details
+        movie.setTitle(title);
+        if (genreId != null) {
+            Genre genre = genreService.getGenreById(genreId); // Validate genre selection
+            if (genre != null) {
+                movie.setGenre(genre);
+            }
+        }
+        movie.setDirector(director);
+        movie.setReleaseYear(releaseYear);
+        movie.setDescription(description);
+
+        // Handle image upload if provided
+        if (!imageFile.isEmpty()) {
+            try {
+                String fileName = imageFile.getOriginalFilename();
+                Path imagePath = Paths.get("path/to/images", fileName);
+                Files.copy(imageFile.getInputStream(), imagePath, StandardCopyOption.REPLACE_EXISTING);
+                movie.setImageUrl(imagePath.toString());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        Statistics statistics = movie.getStatistics();
+        if (statistics == null) {
+            statistics = new Statistics();
+            statistics.setMovie(movie);
+            movie.setStatistics(statistics);
+        }
+
+        movieService.saveMovie(movie, (MovieUser) session.getAttribute("user"));
+        return "redirect:/movies/detail/" + id;
+    }
+
+
 }

@@ -9,7 +9,7 @@
   <h1>MovieApp</h1>
   <nav>
     <ul style="list-style: none; display: flex; gap: 1rem; padding: 0; margin: 0;">
-      <li><a href="/">Home</a></li>
+      <li><a href="/" >Home</a></li>
       <li><a href="/movies">Movies</a></li>
       <li><a href="/groups">Groups</a></li>
       <!--Maybe let only for admin -->
@@ -24,7 +24,9 @@
 
       <th:block th:if="${session.user != null}">
         <li class="user-info" style="margin-left: auto;">
-          <span style="color: white;">Hello, <span th:text="${session.user.name}">User</span></span>
+        <span style="color: white;">
+  Hello, <a href="/profile" style="color: white; text-decoration: none;" th:text="${session.user.name}">User</a>
+</span>
           <a href="/logout">Logout</a>
         </li>
         <li th:if="${session.user.role == 'ADMIN'}"><a href="/admin/dashboard">Admin Panel</a></li>
