@@ -56,7 +56,7 @@ public class AdminController {
 
         // Toggle role between ADMIN and USER
         if (user.getRole().equals("ADMIN")) {
-            userService.demoteToUser(id);  // Or implement this logic
+            userService.demoteAdmin(id);
         } else {
             userService.promoteToAdmin(id);
         }
