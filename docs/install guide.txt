@@ -1,18 +1,32 @@
+Postup instalace a spuštění aplikace
+
+1) Požadavky na systém
+Pro spuštění aplikace je potřeba mít nainstalováno:
+
+- Java JDK 17+
+- Maven (nebo IDE jako IntelliJ s podporou Maven)
+- PostgreSQL (doporučujeme verzi 13+)
+- Docker + Docker Compose - pro spuštění DB pomocí Dockeru
+
+2) Spuštění projektu
+Jakmile se Vám podaří aplikaci otevřít, spusťte do příkazové řadky v adresáři aplikace příkaz "mvn clean install"
+
+3) Instalace Docker-compose a PostgreSQL - popisované řešení na debian linuxu
+Příkazy:
+1) sudo apt update
+2) sudo apt install -y docker-ce docker-ce-cli containerd.io
+
+Pokud systém nedokáže najít Docker instalaci, zkuste následující příkazy. Po nich opakujte instalaci znovu
 curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-sudo apt update
-sudo apt install -y docker-ce docker-ce-cli containerd.io
 
-
-
-mkdir -p /opt/movieApp
-cd /opt/movieApp
-vi docker-compose.yml
-
-configuration of docker-compose.yml for movieApp:
-
-------------------------
-
+3) sudo mkdir /opt/movieApp
+4) sudo cd /opt/movieApp
+5) sudo touch docker-compose.yml
+6) sudo chmod 777 docker-compose.yml
+7) sudo vi docker-compose.yml
+Do docker-compose.yml vložte následující postgreSQL konfiguraci pomocí
+----------------------------------------------------------------------
 version: '3.8'
 
 services:
@@ -32,9 +46,17 @@ services:
 volumes:
   postgres_data:
 
-------------------------
+----------------------------------------------------------------------
 
-sudo docker-compose up -d
+Spusťte PostgreSQL databázi pomocí
+9) sudo docker-compose up -d
 
-to check running app
-sudo docker ps
+Pro ujištění, že databáze běží spusťte příkaz č. 10. Pokud vidíte aplikaci PostgreSQL, instalace a konfigurace byla úspěšná
+10) sudo docker ps
+
+Pro prohlídnutí databáze použijte následující příkaz
+
+11) docker exec -it <container_name> psql -U postgres -d movieapp
+
+Po úspěšném spuštění DB si upravte application.properties dle potřeby databáze (IP adresa, jméno, heslo)
+Nyní by Vám měla aplikace běžet zcela bez problémů

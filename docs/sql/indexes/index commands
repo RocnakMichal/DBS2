@@ -1,0 +1,20 @@
+movie
+CREATE INDEX idx_movie_title ON movie(title);
+CREATE INDEX idx_movie_release_year ON movie(release_year);
+
+movie_user
+CREATE INDEX idx_movie_user_email ON movie_user(email);
+
+rating
+CREATE INDEX idx_rating_movie_id ON rating(movie_id);
+CREATE INDEX idx_rating_user_id ON rating(user_id);
+
+recommendation
+CREATE INDEX idx_recommendation_user_movie ON recommendation(user_id, recommended_movie_id);
+
+log
+CREATE INDEX idx_log_user_id ON log(movie_user_id);
+CREATE INDEX idx_log_timestamp ON log(timestamp);
+
+user_group
+CREATE INDEX idx_group_owner ON user_group(owner_id);
